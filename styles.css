@@ -23,5 +23,12 @@ html, body {
     display: block;
     width: 10vw;
     height:6.6vh;
+}
 
+.logo {
+    height: 15vh;
+    width: auto;
+    position: absolute;
+    top: 1vh;
+    left: 75vw;
 }
