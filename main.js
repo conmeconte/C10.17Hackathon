@@ -46,6 +46,15 @@ var villains = [
 
 ];
 
+var crimes = [" has stolen the GoldenEye satellite, and intends to erase the Bank of England's financial records. Destroying the British economy in the process.",
+              " is planning to contaminate the water supply at Fort Knox, killing everyone and then stealing 15 billion in gold bullion.",
+              " has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."]
+
+function randomizer(arr){
+    var random = arr[Math.floor(Math.random() * arr.length)];
+    return random;
+}
+
 function createLocationButton(locations){
 
     for(var location_i=0; location_i<locations.length; location_i++){
