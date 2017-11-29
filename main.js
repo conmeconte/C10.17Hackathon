@@ -15,15 +15,15 @@ var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:null, trivia: null },
     {id: 2, name: "Istanbul", location: [41.0081056,28.9810191], youTubeId:null, trivia: null },
     {id: 3, name: "Venice", location: [45.4384184,12.3359239], youTubeId:null, trivia: null },
-    {id: 4, name: "New York", location: [40.7536533,-73.9806382], youTubeId:null, trivia: null },
+    {id: 4, name: "New York", location: [40.7536533,-73.9806382], youTubeId:'b07Z_qfchFk', trivia: null },
     {id: 5, name: "Tokyo", location: [35.7141231,139.7966704], youTubeId:null, trivia: null },
-    {id: 6, name: "Los Vegas", location: [36.1126258,-115.1767051], youTubeId:null, trivia: null },
+    {id: 6, name: "Los Vegas", location: [36.1126258,-115.1767051], youTubeId:'ZwbEuzJCnqI', trivia: null },
     {id: 7, name: "Cairo", location: [29.9778574,31.1287904], youTubeId:null, trivia: null },
     {id: 8, name: "Beirut", location: [33.8969085,35.5023606], youTubeId:null, trivia: null },
     {id: 9, name: "Moscow", location: [55.7530756,37.62217], youTubeId:'6lRuXckWC_8', trivia: null },
-    {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:'Md8uNCYX_Nc', trivia: null }, //This one should start at 3 seconds.
+    {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:'H95y-F2kgoQ', trivia: null }, //start at 8 seconds?
     {id: 11, name: "Prague", location: [50.0875638,14.4212062], youTubeId:null, trivia: null },
-    {id: 12, name: "Havana", location: [23.1401843,-82.3508177], youTubeId:null, trivia: null },
+    {id: 12, name: "Havana", location: [23.1401843,-82.3508177], youTubeId:'QNYlNmWfnxo', trivia: null },
     {id: 13, name: "Shanghai", location: [31.239481,121.4998016], youTubeId:null, trivia: null },
     {id: 14, name: "Rio De Janeiro", location: [-22.9522173,-43.2102183], youTubeId:null, trivia: null },
     {id: 15, name: "Sydney", location: [-33.8590761,151.2221537], youTubeId:null, trivia: null }
