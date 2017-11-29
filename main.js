@@ -21,7 +21,7 @@ var locationObj=[
     {id: 7, name: "Cairo", location: [29.9778574,31.1287904], youTubeId:null, trivia: null },
     {id: 8, name: "Beirut", location: [33.8969085,35.5023606], youTubeId:null, trivia: null },
     {id: 9, name: "Moscow", location: [55.7530756,37.62217], youTubeId:'6lRuXckWC_8', trivia: null },
-    {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:null, trivia: null },
+    {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:'Md8uNCYX_Nc', trivia: null }, //This one should start at 3 seconds.
     {id: 11, name: "Prague", location: [50.0875638,14.4212062], youTubeId:null, trivia: null },
     {id: 12, name: "Havana", location: [23.1401843,-82.3508177], youTubeId:null, trivia: null },
     {id: 13, name: "Shanghai", location: [31.239481,121.4998016], youTubeId:null, trivia: null },
