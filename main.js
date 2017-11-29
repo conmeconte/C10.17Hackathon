@@ -221,15 +221,46 @@ function mapCreate() {
             linksControl: false
         });
     map.setStreetView(panorama);
+    markerMaker();
 
-    for(var marker_i=0; marker_i>locationObj.length; marker_i++) {
+    // for(var marker_i=0; marker_i<locationObj.length; marker_i++) {
+    //     var eachLocation = locationObj[marker_i];
+    //     var marker = new google.maps.Marker({
+    //         position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
+    //         map: map,
+    //         title: eachLocation.name
+    //     });
+    // }
+
+}
+
+
+function markerMaker(){
+    var image = {
+        url: "img/Reticle.png",
+        // This marker is 20 pixels wide by 32 pixels high.
+        // size: new google.maps.Size(2000, 2000),
+        // // The origin for this image is (0, 0).
+        // origin: new google.maps.Point(0, 0),
+        // // The anchor for this image is the base of the flagpole at (0, 32).
+        // anchor: new google.maps.Point(0, 0)
+    };
+    // Shapes define the clickable region of the icon. The type defines an HTML
+    // // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+    // // The final coordinate closes the poly by connecting to the first coordinate.
+    // var shape = {
+    //     coords: [1, 1, 1, 20, 18, 20, 18, 1],
+    //     type: 'poly'
+    // };
+    for(var marker_i=0; marker_i<locationObj.length; marker_i++) {
         var eachLocation = locationObj[marker_i];
         var marker = new google.maps.Marker({
             position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
             map: map,
-            title: eachLocation.name
-
-
+            icon: image,
+            shape: shape,
+            title: eachLocation.name,
+            zIndex: 3
         });
     }
 }
