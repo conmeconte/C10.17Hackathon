@@ -1,10 +1,16 @@
 
 $(document).ready(init);
 
-
+//map variables
 var map;
 var fenway;
 var panorama;
+
+//music variables
+var player;
+var vidID;
+
+
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:null, trivia: null },
     {id: 2, name: "Istanbul", location: [41.0081056,28.9810191], youTubeId:null, trivia: null },
@@ -14,7 +20,7 @@ var locationObj=[
     {id: 6, name: "Los Vegas", location: [36.1126258,-115.1767051], youTubeId:null, trivia: null },
     {id: 7, name: "Cairo", location: [29.9778574,31.1287904], youTubeId:null, trivia: null },
     {id: 8, name: "Beirut", location: [33.8969085,35.5023606], youTubeId:null, trivia: null },
-    {id: 9, name: "Moscow", location: [55.7530756,37.62217], youTubeId:null, trivia: null },
+    {id: 9, name: "Moscow", location: [55.7530756,37.62217], youTubeId:'6lRuXckWC_8', trivia: null },
     {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:null, trivia: null },
     {id: 11, name: "Prague", location: [50.0875638,14.4212062], youTubeId:null, trivia: null },
     {id: 12, name: "Havana", location: [23.1401843,-82.3508177], youTubeId:null, trivia: null },
@@ -24,6 +30,8 @@ var locationObj=[
 
 
 ];
+
+//music added will need to be called later.  player.loadVideoByID(locationObj.youTubeId);
 
 var villains = [
 {name: "Auric Goldfinger",
@@ -45,8 +53,6 @@ var villains = [
 }
 
 ];
-
-var player;
 
 function createLocationButton(locations){
 
@@ -114,8 +120,8 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '0',
         width: '0',
-        videoId: '6lRuXckWC_8', //We'll need to find out how to make this more dynamic.
-        autoplay: '1', //This is supposed to autoplay, but I don't know if it works.
+        videoId: vidID, //Find a better way.
+        autoplay: '1',
         events: {
             'onReady': onPlayerReady
         }
@@ -126,6 +132,5 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
     event.target.playVideo();
 }
-
 
 
