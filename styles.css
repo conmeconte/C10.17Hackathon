@@ -3,6 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: black;
+    overflow: hidden;
 }
 #map {
     float: left;
@@ -25,3 +26,24 @@ html, body {
     height:6.6vh;
 
 }
+.locationBtns{
+    display:inline-block;
+    margin-top: 0.3%;
+}
+#m{
+    width: 20%;
+    position: absolute;
+    bottom: -17vh;
+    right: -4vw;
+
+}
+.subTitle{
+    position: absolute;
+    right: 0vw;
+    width: 29.5%;
+    height:20%;
+    top:0vh;
+    box-shadow: -1px 1px 10px 5px #888888;
+}
+
+
