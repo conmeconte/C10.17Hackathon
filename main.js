@@ -55,6 +55,11 @@ function randomizer(arr){
     return random;
 }
 
+function villainTriviarandomizer(randomizer){
+
+
+}
+
 function createLocationButton(locations){
 
     for(var location_i=0; location_i<locations.length; location_i++){
