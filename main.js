@@ -46,6 +46,8 @@ var villains = [
 
 ];
 
+var player;
+
 function createLocationButton(locations){
 
     for(var location_i=0; location_i<locations.length; location_i++){
@@ -94,5 +96,36 @@ function mapCreate() {
         });
     map.setStreetView(panorama);
 }
+
+
+//Start of Youtube API information
+
+//  The <iframe> (and video player) will replace the <div> tag.
+// This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+//  This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: '6lRuXckWC_8', //We'll need to find out how to make this more dynamic.
+        autoplay: '1', //This is supposed to autoplay, but I don't know if it works.
+        events: {
+            'onReady': onPlayerReady
+        }
+    });
+}
+
+//Youtube API will call this function when the video player is ready.
+function onPlayerReady(event) {
+    event.target.playVideo();
+}
+
 
 
