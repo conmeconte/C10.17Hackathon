@@ -62,35 +62,41 @@ var locationObj=[
 //music added will need to be called later.  player.loadVideoByID(locationObj.youTubeId);
 
 var villains = [
-{name: "Auric Goldfinger",
+    {name: "Auric Goldfinger",
     photo: "villain_images/a_Goldfinger.jpg",
     trivia: ["Claims to be an expert pistol shot that never misses",
     "Is a Jeweller and Smuggler",
     "Has a manservant named Oddjob"]
-},
-{name: "Alec Trevelyan",
+    },
+    {name: "Alec Trevelyan",
     photo: "villain_images/Alec_Trevelyan.jpg",
     trivia: ["Formerly agent 006 of MI6",
     "Also known as Janus",]
-},
-{name: "Raoul Silva",
+    },
+    {name: "Raoul Silva",
     photo: "villain_images/raoul_silva.png",
     trivia: ["Former partner of Olivia Mansfield (M)",
     "Cyber-terrorist",
     "Captured, tortured, and imprisoned by the Chinese"]
-}
-
+    }
 ];
 
 var crimes = [" has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
               " is planning to contaminate the water supply at Fort Knox, killing everyone and then stealing 15 billion in gold bullion.",
               " has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."];
 
+function init(){
+    createLocationButton(locationObj);
+
+};
+
 function randomizer(arr){
     var random = arr[Math.floor(Math.random() * arr.length)];
     return random;
 }
 
+/*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
+Each button created contains the specific location object with its properties such as location coordinate*/
 function createLocationButton(locations){
 
     for(var location_i=0; location_i<locations.length; location_i++){
@@ -105,39 +111,126 @@ function createLocationButton(locations){
 
 }
 
+/*on clicking a location button it centers the map to the lat & lng that the button's obj possess.*/
 function moveLocationsOnClick(){
     map.setCenter({lat:  this.location[0], lng: this.location[1]});
     map.streetView.setPosition({lat:  this.location[0], lng: this.location[1]});
 }
 
-function init(){
-    createLocationButton(locationObj);
-
-};
 
 
 
+/*Google API to create the map and streetview on pageload*/
 function mapCreate() {
     fenway = {lat: 51.500316, lng:  -0.126370};
     map = new google.maps.Map(document.getElementById('map'), {
         center: fenway,
-        zoom: 10
+        zoom: 10,
+        disableDefaultUI: true, //disables the ui of the map so that client can not meddle with it.
+        styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+                featureType: 'administrative.locality',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'geometry',
+                stylers: [{color: '#263c3f'}]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#6b9a76'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{color: '#38414e'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#212a37'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#9ca5b3'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{color: '#746855'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#1f2835'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#f3d19c'}]
+            },
+            {
+                featureType: 'transit',
+                elementType: 'geometry',
+                stylers: [{color: '#2f3948'}]
+            },
+            {
+                featureType: 'transit.station',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'geometry',
+                stylers: [{color: '#17263c'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#515c6d'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.stroke',
+                stylers: [{color: '#17263c'}]
+            }
+        ]
     });
-//        var cafeMarker = new google.maps.Marker({
-//            position: {lat: 42.345573, lng: -71.991428},
-//            map: map,
-//            icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00',
-//            title: 'Cafe'
-//        });
+
     panorama = new google.maps.StreetViewPanorama(
         document.getElementById('pano'), {
             position: fenway,
             pov: {
                 heading: 34,
                 pitch: 10
-            }
+            },
+            disableDefaultUI: true,
+            linksControl: false
         });
     map.setStreetView(panorama);
+
+    for(var marker_i=0; marker_i>locationObj.length; marker_i++) {
+        var eachLocation = locationObj[marker_i];
+        var marker = new google.maps.Marker({
+            position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
+            map: map,
+            title: eachLocation.name
+
+
+        });
+    }
 }
 
 
