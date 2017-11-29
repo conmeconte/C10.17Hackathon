@@ -11,12 +11,13 @@ var player;
 var vidID;
 
 var locationObj=[
+
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE', trivia: null },
     {id: 2, name: "Istanbul", location: [41.0081056,28.9810191], youTubeId:'8C5NLfYdZaE', trivia: null },
     {id: 3, name: "Venice", location: [45.4384184,12.3359239], youTubeId:'mOgFS6AYoVc', trivia: null },
     {id: 4, name: "New York", location: [40.7536533,-73.9806382], youTubeId:'b07Z_qfchFk', trivia: null },
     {id: 5, name: "Tokyo", location: [35.7141231,139.7966704], youTubeId:'Q_w4DVgvVHs', trivia: null },
-    {id: 6, name: "Los Vegas", location: [36.1126258,-115.1767051], youTubeId:'ZwbEuzJCnqI', trivia: null },
+    {id: 6, name: "Las Vegas", location: [36.1126258,-115.1767051], youTubeId:'ZwbEuzJCnqI', trivia: null },
     {id: 7, name: "Cairo", location: [29.9778574,31.1287904], youTubeId:'at7xLnfubFY', trivia: null },
     {id: 8, name: "Beirut", location: [33.8969085,35.5023606], youTubeId:'PSbj2Mx2By8', trivia: null },
     {id: 9, name: "Moscow", location: [55.7530756,37.62217], youTubeId:'6lRuXckWC_8', trivia: null },
@@ -54,14 +55,25 @@ var villains = [
 ];
 
 var crimes = [" has stolen the GoldenEye satellite, and intends to erase the Bank of England's financial records. Destroying the British economy in the process.",
-              " is planning to contaminate the water supply at Fort Knox, killing everyone and then stealing 15 billion in gold bullion.",
-              " has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."]
+    " is planning to contaminate the water supply at Fort Knox, killing everyone and then stealing 15 billion in gold bullion.",
+    " has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."]
+
+function init(){
+    createLocationButton(locationObj);
+
+};
+
+
+
+
 
 function randomizer(arr){
     var random = arr[Math.floor(Math.random() * arr.length)];
     return random;
 }
 
+/*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
+Each button created contains the specific location object with its properties such as location coordinate*/
 function createLocationButton(locations){
 
     for(var location_i=0; location_i<locations.length; location_i++){
@@ -76,39 +88,126 @@ function createLocationButton(locations){
 
 }
 
+/*on clicking a location button it centers the map to the lat & lng that the button's obj possess.*/
 function moveLocationsOnClick(){
     map.setCenter({lat:  this.location[0], lng: this.location[1]});
     map.streetView.setPosition({lat:  this.location[0], lng: this.location[1]});
 }
 
-function init(){
-    createLocationButton(locationObj);
-
-};
 
 
 
+/*Google API to create the map and streetview on pageload*/
 function mapCreate() {
     fenway = {lat: 51.500316, lng:  -0.126370};
     map = new google.maps.Map(document.getElementById('map'), {
         center: fenway,
-        zoom: 10
+        zoom: 10,
+        disableDefaultUI: true, //disables the ui of the map so that client can not meddle with it.
+        styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+                featureType: 'administrative.locality',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'poi',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'geometry',
+                stylers: [{color: '#263c3f'}]
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#6b9a76'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'geometry',
+                stylers: [{color: '#38414e'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#212a37'}]
+            },
+            {
+                featureType: 'road',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#9ca5b3'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry',
+                stylers: [{color: '#746855'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [{color: '#1f2835'}]
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#f3d19c'}]
+            },
+            {
+                featureType: 'transit',
+                elementType: 'geometry',
+                stylers: [{color: '#2f3948'}]
+            },
+            {
+                featureType: 'transit.station',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#d59563'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'geometry',
+                stylers: [{color: '#17263c'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.fill',
+                stylers: [{color: '#515c6d'}]
+            },
+            {
+                featureType: 'water',
+                elementType: 'labels.text.stroke',
+                stylers: [{color: '#17263c'}]
+            }
+        ]
     });
-//        var cafeMarker = new google.maps.Marker({
-//            position: {lat: 42.345573, lng: -71.991428},
-//            map: map,
-//            icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00',
-//            title: 'Cafe'
-//        });
+
     panorama = new google.maps.StreetViewPanorama(
         document.getElementById('pano'), {
             position: fenway,
             pov: {
                 heading: 34,
                 pitch: 10
-            }
+            },
+            disableDefaultUI: true,
+            linksControl: false
         });
     map.setStreetView(panorama);
+
+    for(var marker_i=0; marker_i>locationObj.length; marker_i++) {
+        var eachLocation = locationObj[marker_i];
+        var marker = new google.maps.Marker({
+            position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
+            map: map,
+            title: eachLocation.name
+
+
+        });
+    }
 }
 
 
