@@ -238,12 +238,10 @@ function mapCreate() {
 function markerMaker(){
     var image = {
         url: "img/Reticle.png",
-        // This marker is 20 pixels wide by 32 pixels high.
-        // size: new google.maps.Size(2000, 2000),
-        // // The origin for this image is (0, 0).
-        // origin: new google.maps.Point(0, 0),
-        // // The anchor for this image is the base of the flagpole at (0, 32).
-        // anchor: new google.maps.Point(0, 0)
+        size: new google.maps.Size(45, 45),
+        scaledSize: new google.maps.Size(30, 30),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 0)
     };
     // Shapes define the clickable region of the icon. The type defines an HTML
     // // <area> element 'poly' which traces out a polygon as a series of X,Y points.
@@ -258,7 +256,7 @@ function markerMaker(){
             position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
             map: map,
             icon: image,
-            shape: shape,
+            // shape: shape,
             title: eachLocation.name,
             zIndex: 3
         });
