@@ -18,6 +18,7 @@ html, body {
 
 }
 
-button{
-
+.btn{
+    display: block;
+    width: 10vw;
 }
