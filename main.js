@@ -96,8 +96,14 @@ function randomizer(arr){
     return random;
 }
 
+function villainTriviarandomizer(randomizer){
+
+
+}
+
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
 Each button created contains the specific location object with its properties such as location coordinate*/
+
 function createLocationButton(locations){
 
     for(var location_i=0; location_i<locations.length; location_i++){
