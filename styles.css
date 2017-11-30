@@ -32,7 +32,12 @@ html, body {
     z-index: 3;
     background-color: black;
 }
-
+#initModP{
+    background-color: rgba(255,255,255,0.5);
+    position: relative;
+    font-size: 3vw;
+    height: 20%;
+}
 #missionButton {
     font-family: "spectre", sans-serif;
     position: relative;
