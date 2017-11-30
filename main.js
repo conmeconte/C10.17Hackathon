@@ -29,6 +29,12 @@ var selectedVillain;
 var locationCounter=0;
 var wrongChoiceCounter=0;
 
+/*Sound file Sources */
+var gunSound= new Audio();
+gunSound.src= "sounds/gunsound2.mp3";
+
+var missionLocations = [];
+
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
         "This is the largest city in Europe.",
@@ -130,9 +136,12 @@ function init(){
 
 function handleClicks(){
     $('#missionButton').click(function(){
+        gunSound.play();
         $("#initialModal").hide();
         pickMissionLocations(locationObj);
         selectedVillain=randomizer(villains);
+        locationCounter=0;
+        wrongChoiceCounter=0;
     })
 }
 
@@ -150,7 +159,6 @@ function villainTriviaRandomizer(arr){
     var chosenVillain = randomizer(arr);
     return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
-var missionLocations = [];
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
 
     var slice = array.slice(0);
@@ -195,6 +203,7 @@ function triggerTrivia(){
 }
 
 /*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
+
 function nextLocation(){
     if(missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
         $('#myModalImg').attr("src", "img/jamesBond.png");
@@ -205,10 +214,23 @@ function nextLocation(){
         $('#myModalImg').attr("src", "img/blood-007.png");
         $('#myModal').css('display', 'block');
         wrongChoiceCounter++;
+        checkLosingCondition();
+        gunSound.play();
     }
 
 }
 
+/*If player clicks wrong choice more than 5 times this function trigger*/
+
+function checkLosingCondition(){
+    if(locationCounter+wrongChoiceCounter>=5){
+        $('#initialModal p').text("You Lose");
+        $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
+        $('#initialModal').css('display', 'block');
+        $('#missionButton').text('Try Again');
+
+    }
+}
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
 Each button created contains the specific location object with its properties such as location coordinate*/
