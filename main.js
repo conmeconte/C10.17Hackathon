@@ -35,6 +35,9 @@ var wrongChoiceCounter=0;
 var gunSound= new Audio();
 gunSound.src= "sounds/gunsound2.mp3";
 
+//poster variable
+var moviePoster;
+
 
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
@@ -102,7 +105,7 @@ var villains = [
     },
     {name: "Raoul Silva",
     photo: "img/raoul_silva.png",
-    movie: "SkyFall"
+    movie: "SkyFall",
     trivia: ["Former partner of Olivia Mansfield (M)",
     "Cyber-terrorist",
     "Captured, tortured, and imprisoned by the Chinese"]
@@ -133,7 +136,6 @@ function init(){
         selectMusic();
     });
     handleClicks();
-    loadMovieFromServer();
     loadFinalModalItems();
     
 
@@ -145,10 +147,16 @@ function handleClicks(){
         $("#initialModal").hide();
         pickMissionLocations(locationObj);
         selectedVillain=randomizer(villains);
+        loadMovieFromServer(selectedVillain.movie);
         locationCounter=0;
         wrongChoiceCounter=0;
     });
-    $('.villainNames').click(chooseMastermind);
+    $('.villainNames').click(function(){
+        chooseMastermind(moviePoster);
+    });
+    $('.temporaryFinalModal').click(function(){
+        $('#finalModal').css('display','block');
+    })
 }
 
 function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
@@ -194,17 +202,33 @@ function loadFinalModalItems() {
         });
         $('.villainNames.v'+i).text(villains[i].name);
     }
-//     $(".v0, .v1, .v2").on("click", chooseMastermind);
 }
 
 //Accuse a villain in final modal
-function chooseMastermind(event){
+function chooseMastermind(image){ //pass in movie poster
+    var win = false;
+    var foundVillainIndex = $(event.target).index();
     var choice = $(event.target).text();
     if(choice === selectedVillain.name){
-        console.log("You win!");
-    } else {
-        console.log("You lose!");
+        win = true;
     }
+    if (win){
+        $('.villainPics.v0').css({
+            'background-image': 'url('+villains[foundVillainIndex].photo+')',
+            'background-size': 'cover',
+            'background-repeat': 'no-repeat'
+        });
+        //Put video here.
+        $('.villainPics.v2').css({
+            'background-image': 'url('+image+')'
+        });
+        $('.villainNames.v0').text(villains[foundVillainIndex].name);
+        $('.villainNames.v1').hide();
+        $('.villainNames.v2').text(villains[foundVillainIndex].movie);
+    } else {
+        //trigger loser modal.
+    }
+
 }
 
 /*Adds selected locations trivia to the modals*/
@@ -466,18 +490,18 @@ function onPlayerReady(event) {
 
 //Start of Movie Database Info
 
-function loadMovieFromServer(){
+function loadMovieFromServer(title){
     var dataToSend = {
-        api_key: '9104cf02',
-        t: 'Goldfinger'
+        apikey: '9104cf02',
+        t: title
     };
 
 
     var ajaxOptions = {
-        method: 'get',
+        method: 'GET',
         dataType: 'json',
         data: dataToSend,
-        url: "http://www.omdbapi.com/?i=tt3896198&apikey=9104cf02",
+        url: "http://www.omdbapi.com/",
         success: functionToRunOnSuccess,
         error: functionToRunOnError
     };
@@ -487,11 +511,7 @@ function loadMovieFromServer(){
     }
 
     function functionToRunOnSuccess(movie){
-        console.log('movie: ', movie);
-        console.log(movie.Poster);
-        var posterImage = $('<img>').attr('src', movie.Poster);
-        // $('body').append(posterImage);
-        // proves that it works but not actually useful here.  Have to figure out where to append and when.
+        moviePoster = movie.Poster;
     }
 
     $.ajax(ajaxOptions);
