@@ -7,11 +7,12 @@ $(document).ready(init);
 //     pickVillain: "You have caught up to the culprit! Based on the clues you received, who do you think was the mastermind?",
 //     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
 // }];
+//
+// function welcomePlayer(){
+//     responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
+// }
 
-function welcomePlayer(){
-    responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
-}
-
+var win = 0;
 //map variables
 var map;
 var fenway;
@@ -166,13 +167,17 @@ function handleClicks(){
         loadMovieFromServer(selectedVillain.movie);
         locationCounter=0;
         wrongChoiceCounter=0;
+        win=0;
     });
     $('.villainNames').click(function(){
         chooseMastermind(moviePoster);
     });
     $('.temporaryFinalModal').click(function(){
         $('#finalModal').css('display','block');
-    })
+    });
+    $('.closeModal').click(function(){
+        $('#finalModal').css('display','none');
+    });
 }
 
 function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
@@ -225,24 +230,28 @@ function loadFinalModalItems() {
 }
 
 //Accuse a villain in final modal
-function chooseMastermind(image){ //pass in movie poster
-    var win = false;
+function chooseMastermind(poster){ //pass in movie poster
     var foundVillainIndex = $(event.target).index();
     var choice = $(event.target).text();
     if(choice === selectedVillain.name){
+        win = 2;
         $('.villainPics.v0').css({
             'background-image': 'url('+villains[foundVillainIndex].photo+')',
             'background-size': 'cover',
             'background-repeat': 'no-repeat'
         });
-        //Put video here.
+
+        $('.villainPics.v1').hide();
+        // $('.success').css('display', 'block'); This can be changed to video in later version.
         $('.villainPics.v2').css({
-            'background-image': 'url('+image+')'
+            'background-image': 'url('+poster+')'
         });
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();
         $('.villainNames.v2').text(villains[foundVillainIndex].movie);
+        setTimeout(5000, winningModal);
     } else {
+        win = 1;
         losingModal();
     }
 
@@ -286,7 +295,8 @@ function nextLocation(){
 
     }
     else{
-        $('.modal-content p').text("You fell into a trap!");
+        $('#midModalP').text("You fell into a trap!");
+        $('#midModalP2').text("");
         $('#midModalImg').attr("src", "img/blood-007.png");
         $('#midModal').css('display', 'block');
         wrongChoiceCounter++;
@@ -299,7 +309,13 @@ function nextLocation(){
 /*If player clicks wrong choice more than 5 times this function trigger*/
 
 function losingModal(){
-    if(locationCounter+wrongChoiceCounter>=5){
+    if(locationCounter+wrongChoiceCounter>=5 && win===0){
+        $('#initialModal p').text("You Lose");
+        $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
+        $('#initialModal').css('display', 'block');
+        $('#missionButton').text('Try Again');
+    } else if (win===1){
+        $('#finalModal').css('display','none');
         $('#initialModal p').text("You Lose");
         $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
@@ -309,6 +325,7 @@ function losingModal(){
 
 
 function winningModal(){
+        $('#finalModal').css('display', 'none');
         $('#initialModal p').text("You Got the Villain");
         $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
