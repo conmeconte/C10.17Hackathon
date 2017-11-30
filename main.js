@@ -64,18 +64,18 @@ var locationObj=[
 
 var villains = [
     {name: "Auric Goldfinger",
-    photo: "villain_images/a_Goldfinger.jpg",
+    photo: "img/a_Goldfinger.jpg",
     trivia: ["Claims to be an expert pistol shot that never misses",
     "Is a Jeweller and Smuggler",
     "Has a manservant named Oddjob"]
     },
     {name: "Alec Trevelyan",
-    photo: "villain_images/Alec_Trevelyan.jpg",
+    photo: "img/Alec_Trevelyan.jpg",
     trivia: ["Formerly agent 006 of MI6",
     "Also known as Janus",]
     },
     {name: "Raoul Silva",
-    photo: "villain_images/raoul_silva.png",
+    photo: "img/raoul_silva.png",
     trivia: ["Former partner of Olivia Mansfield (M)",
     "Cyber-terrorist",
     "Captured, tortured, and imprisoned by the Chinese"]
@@ -88,6 +88,7 @@ var crimes = [" has stolen the GoldenEye satellite and intends to erase the Bank
 
 function init(){
     createLocationButton(locationObj);
+
     $('#myBtn').click(function() {
         $('#myModal').css('display', "block");
     });
@@ -98,9 +99,17 @@ function init(){
         if (event.target == $('#myModal')[0]) {
             $('#myModal').css('display','none');
         }
-    }
+    };
+
+    handleClicks();
 
 };
+
+function handleClicks(){
+    $('#closeButton').click(function(){
+        $("#initialModal").hide();
+    })
+}
 
 function randomizer(arr){
     var random = arr[Math.floor(Math.random() * arr.length)];
@@ -110,6 +119,11 @@ function randomizer(arr){
 function indexRandomizer(arr){  //Finds random index in array.
     var random = Math.floor(Math.random() * arr.length);
     return random;
+}
+
+function villainTriviaRandomizer(arr){
+        var chosenVillain = randomizer(arr);
+        return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
 
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
@@ -132,10 +146,6 @@ function pickMissionLocations(array){  //This function returns three location ob
 
 console.log(pickMissionLocations(locationObj));
 
-function villainTriviarandomizer(randomizer){
-
-
-}
 
 /*Adds selected locations trivia to the modals*/
 var threeTriviaObj=[];
@@ -350,4 +360,8 @@ function onPlayerReady(event) {
 
 
 
-/*===================================MODAL==========================================*/
+
+
+var M = [];
+responsiveVoice.speak('This is a test, and I hope that it works.');
+
