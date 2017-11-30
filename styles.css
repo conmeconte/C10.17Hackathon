@@ -195,11 +195,63 @@ html, body {
     z-index:3;
 }
 
-/* Final Modal Content */
+/* -------------- final modal -------------- */
 
 #finalModal {
     height: 75vh;
     width: 75vw;
-    background-color: red;
+    background-color: white;
+    margin-top: 10vh;
+    margin-left: 15vw;
+    border-radius: 25px;
+}
 
+#finalModal h1 {
+    display: block;
+    text-align: center;
+    padding-top: 5vh;
+    padding-bottom: 3vh;
+}
+
+.suspects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.villainPics {
+    height: 40vh;
+    width: 20vw;
+}
+
+.villainNames {
+    height: 10vh;
+    width: 20vw;
+    border: 1px solid #f2f2f2;
+}
+
+.villainNames, .villainPics img {
+    box-shadow: 10px 10px 5px #888888;
+    border-radius: 25px;
+}
+
+.villainNames p {
+    display: block;
+    text-align: center;
+    margin-top: 3vh;
+    font-size: 3vh;
+}
+
+.villainPics img {
+    width: 100%;
+    height: auto;
+}
+
+/* -------------- avatars -------------- */
+
+#instructions {
+    position: absolute;
+    top: 50vh;
+    left: 73vw;
 }
