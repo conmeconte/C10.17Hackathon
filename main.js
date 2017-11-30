@@ -400,7 +400,7 @@ function loadMovieFromServer(){
         console.log(movie.Poster);
         var posterImage = $('<img>').attr('src', movie.Poster);
         // $('body').append(posterImage);
-        // proves that it works but not actually useful here.  Have to figure out where to append.
+        // proves that it works but not actually useful here.  Have to figure out where to append and when.
     }
 
     $.ajax(ajaxOptions);
