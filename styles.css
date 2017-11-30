@@ -295,7 +295,7 @@ html, body {
     /*visibility: hidden;*/
 /*}*/
 
-video {
+.introVideo {
     position: absolute;
     top: 20vh;
     left: 34vw;
