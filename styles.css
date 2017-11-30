@@ -208,12 +208,16 @@ html, body {
 /* -------------- final modal -------------- */
 
 #finalModal {
+    /*display: none;*/
     height: 75vh;
     width: 75vw;
     background-color: white;
-    margin-top: 10vh;
-    margin-left: 15vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 25px;
+    z-index: 200;
 }
 
 #finalModal h1 {
@@ -246,11 +250,12 @@ html, body {
     border-radius: 25px;
 }
 
-.villainNames p {
+.villainNames {
     display: block;
     text-align: center;
     margin-top: 3vh;
     font-size: 3vh;
+    font-weight: bold;
 }
 
 .villainPics img {
