@@ -106,7 +106,6 @@ var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase t
 
 function init(){
     createLocationButton(locationObj);
-
     $('#myBtn').click(function() {
         $('#myModal').css('display', "block");
 
@@ -125,6 +124,7 @@ function init(){
     });
     handleClicks();
     loadMovieFromServer();
+
 };
 
 
@@ -390,11 +390,14 @@ function onYouTubeIframeAPIReady() {
             'onReady': onPlayerReady
         }
     });
+
 }
+
 
 //Youtube API will call this function when the video player is ready.
 function onPlayerReady(event) {
     event.target.playVideo();
+    player.loadVideoById("ye8KvYKn9-0");
 }
 
 
