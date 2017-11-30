@@ -118,12 +118,12 @@ function init(){
 
 
 function handleClicks(){
-    $('#closeButton').click(function(){
+    $('#missionButton').click(function(){
         $("#initialModal").hide();
     })
 }
 
-function randomizer(arr){
+function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
     var random = arr[Math.floor(Math.random() * arr.length)];
     return random;
 }
