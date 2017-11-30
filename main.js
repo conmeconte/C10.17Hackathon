@@ -7,10 +7,10 @@ $(document).ready(init);
 //     pickVillain: "You have caught up to the culprit! Based on the clues you received, who do you think was the mastermind?",
 //     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
 // }];
-
-function welcomePlayer(){
-    responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
-}
+//
+// function welcomePlayer(){
+//     responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
+// }
 
 //map variables
 var map;
@@ -225,7 +225,7 @@ function chooseMastermind(poster){ //pass in movie poster
         });
 
         $('.villainPics.v1').hide();
-        $('.success').css('display', 'block');
+        // $('.success').css('display', 'block'); This can be changed to video in later version.
         $('.villainPics.v2').css({
             'background-image': 'url('+poster+')'
         });
