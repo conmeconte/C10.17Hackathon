@@ -25,6 +25,10 @@ var vidID;
 //villain variables
 var selectedVillain;
 
+//Used for location Guesses
+var locationCounter=0;
+var wrongChoiceCounter=0;
+
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
         "This is the largest city in Europe.",
@@ -32,18 +36,18 @@ var locationObj=[
         "This city is the first to host the Olympics three times (1908, 1948 and 2012).",
         "The famous 221B Baker St. address is actually located at 187 North Gower St.",
         "One of the most famous bands in the world played their last gig on the roof of Apple Corps."]},
-    {id: 2, name: "Istanbul", location: [41.0081056,28.9810191], youTubeId:'8C5NLfYdZaE',flagSrc: "img/Turkey.png", trivia: "This is the only city in the world to straddle two continents: Asia and Europe."},
-    {id: 3, name: "Venice", location: [45.4384184,12.3359239], youTubeId:'mOgFS6AYoVc', flagSrc: "img/italy.png",trivia: "This city is made up of 118 islands."},
-    {id: 4, name: "New York", location: [40.7536533,-73.9806382], youTubeId:'b07Z_qfchFk',flagSrc: "img/usa.png", trivia: "15,152 forms of life have been found in the city's train system (including insects and bacteria)."},
-    {id: 5, name: "Tokyo", location: [35.7141231,139.7966704], youTubeId:'Q_w4DVgvVHs', flagSrc: "img/japan.png", trivia: "With a population of 26.5 million, this city is the largest in the world in terms of total population size."},
-    {id: 6, name: "Las Vegas", location: [36.1126258,-115.1767051], youTubeId:'ZwbEuzJCnqI',flagSrc: "img/usa.png", trivia: "Michael Jackson had plans to build a 50 foot tall moon walking robot replica of himself to roam the desert of this city. It was intended to be an advertisement for a planned 2005 comeback."},
+    {id: 2, name: "Istanbul", location: [41.0081056,28.9810191], youTubeId:'8C5NLfYdZaE',flagSrc: "img/Turkey.png", trivia: ["This is the only city in the world to straddle two continents: Asia and Europe."]},
+    {id: 3, name: "Venice", location: [45.4384184,12.3359239], youTubeId:'mOgFS6AYoVc', flagSrc: "img/italy.png",trivia: ["This city is made up of 118 islands."]},
+    {id: 4, name: "New York", location: [40.7536533,-73.9806382], youTubeId:'b07Z_qfchFk',flagSrc: "img/usa.png", trivia: ["15,152 forms of life have been found in the city's train system (including insects and bacteria)."]},
+    {id: 5, name: "Tokyo", location: [35.7141231,139.7966704], youTubeId:'Q_w4DVgvVHs', flagSrc: "img/japan.png", trivia: ["With a population of 26.5 million, this city is the largest in the world in terms of total population size."]},
+    {id: 6, name: "Las Vegas", location: [36.1126258,-115.1767051], youTubeId:'ZwbEuzJCnqI',flagSrc: "img/usa.png", trivia: ["Michael Jackson had plans to build a 50 foot tall moon walking robot replica of himself to roam the desert of this city. It was intended to be an advertisement for a planned 2005 comeback."]},
     {id: 7, name: "Cairo", location: [29.9778574,31.1287904], youTubeId:'at7xLnfubFY',flagSrc: "img/egypt.png", trivia: [
         "This city's name means 'Vanquisher', supposedly because Mars was rising at the time it was founded.",
         "With an estimated population of 22 million, this is the largest city in Africa and the Middle East.",
         "This city is home to the only remaining ancient 7 Wonders of the World.",
         "In this city, Sunday is the first day of week and the weekend is Friday and Saturday.",
         "There are two large islands in the middle of this city."]},
-    {id: 8, name: "Beirut", location: [33.8969085,35.5023606], youTubeId:'PSbj2Mx2By8',flagSrc: "img/lebanon.jpg", trivia: "There are 15 rivers in the country this city is in (all of them coming from its own mountains), and despite surrounding deserts, this country has none."},
+    {id: 8, name: "Beirut", location: [33.8969085,35.5023606], youTubeId:'PSbj2Mx2By8',flagSrc: "img/lebanon.jpg", trivia: ["There are 15 rivers in the country this city is in (all of them coming from its own mountains), and despite surrounding deserts, this country has none."]},
     {id: 9, name: "Moscow", location: [55.7530756,37.62217], youTubeId:'6lRuXckWC_8',flagSrc: "img/russia.png", trivia: [
         "This city boasts the largest number of billionaires in the world.",
         "The highest tower in Europe with an overall height of 540 m is located here.",
@@ -61,8 +65,8 @@ var locationObj=[
         "The locals drink more beer per capita than any other country in the world.",
         "The very first book about Mozart was published here.",
         "The Rolling Stones paid $32,000 to light up a monument in this city - a sight many tourist continue to enjoy to this day."]},
-    {id: 12, name: "Havana", location: [23.1401843,-82.3508177], youTubeId:'QNYlNmWfnxo',flagSrc: "img/costaRica.png", trivia: "Singer Gloria Estefan was born here."},
-    {id: 13, name: "Shanghai", location: [31.239481,121.4998016], youTubeId:'DeumyOzKqgI',flagSrc: "img/china.png", trivia: "This city has the second tallest building in the world, standing at 2,073 feet."},
+    {id: 12, name: "Havana", location: [23.1401843,-82.3508177], youTubeId:'QNYlNmWfnxo',flagSrc: "img/costaRica.png", trivia: ["Singer Gloria Estefan was born here."]},
+    {id: 13, name: "Shanghai", location: [31.239481,121.4998016], youTubeId:'DeumyOzKqgI',flagSrc: "img/china.png", trivia: ["This city has the second tallest building in the world, standing at 2,073 feet."]},
     {id: 14, name: "Rio De Janeiro", location: [-22.9522173,-43.2102183], youTubeId:'3gDboKGn-Sw',flagSrc: "img/brazil.png", trivia: [
         "This city is named after a river that doesn't exist and means January River.",
         "One of its most famous landmarks has been labeled one of the world's New 7 Wonders of the World.",
@@ -102,7 +106,6 @@ var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase t
 
 function init(){
     createLocationButton(locationObj);
-
     $('#myBtn').click(function() {
         $('#myModal').css('display', "block");
 
@@ -115,10 +118,13 @@ function init(){
             $('#myModal').css('display','none');
         }
     };
-    $('.btn').click(nextLocation,selectMusic);
+    $('.btn').click(function(){
+        nextLocation();
+        selectMusic();
+    });
     handleClicks();
     loadMovieFromServer();
-
+    
     $(".villainPics").append(villain1pic);
     $(".villainNames").append(villain1name);
     $(".v1, .v2, .v3").on("click", chooseMastermind);
@@ -185,11 +191,14 @@ function chooseMastermind(){
 
 
 /*Once begin button clicked calls the function to trigger first modal*/
-var locationCounter=0;
+/*takes in array of trivias and renders a random trivia from array to be posted on the modal */
+
 function triggerTrivia(){
     if(missionLocations.length>=locationCounter) {
-        $('.modal-content p').text(missionLocations[locationCounter].trivia);
-        $('.currentHint p').text(missionLocations[locationCounter].trivia);
+        var pickTrivia=missionLocations[locationCounter].trivia;
+        var randomIndex=Math.floor(Math.random() * pickTrivia.length);
+        $('.modal-content p').text(pickTrivia[randomIndex]);
+        $('.currentHint p').text(pickTrivia[randomIndex]);
         $('#myModal').css('display', 'block');
     }
 }
@@ -197,11 +206,14 @@ function triggerTrivia(){
 /*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
 function nextLocation(){
     if(missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
+        $('#myModalImg').attr("src", "img/jamesBond.png");
         locationCounter++;
         triggerTrivia();
     }else{
-        $('.modal-content p').text("He is not here, but hey feel free to look around");
+        $('.modal-content p').text("You fell into a trap!");
+        $('#myModalImg').attr("src", "img/blood-007.png");
         $('#myModal').css('display', 'block');
+        wrongChoiceCounter++;
     }
 
 }
@@ -227,17 +239,15 @@ function createLocationButton(locations){
 
 /*on clicking a location button it centers the map to the lat & lng that the button's obj possess.*/
 function moveLocationsOnClick(){
-    map.setCenter({lat:  this.location[0], lng: this.location[1]});
+    map.setCenter({lat:  this.location[0], lng: this.location[1]+0.1});
     map.streetView.setPosition({lat:  this.location[0], lng: this.location[1]});
 }
 
 
 function selectMusic(){
-    var index = $(this).index();
-    console.log("music",event.target);
-    console.log("index", index);
+    var index = $(event.target).index();
     var musicSrc=locationObj[index].youTubeId;
-    player.loadVideoByID(musicSrc);
+    player.loadVideoById(musicSrc);
 }
 
 /*Google API to create the map and streetview on pageload*/
@@ -342,15 +352,6 @@ function mapCreate() {
     map.setStreetView(panorama);
     markerMaker();
 
-    // for(var marker_i=0; marker_i<locationObj.length; marker_i++) {
-    //     var eachLocation = locationObj[marker_i];
-    //     var marker = new google.maps.Marker({
-    //         position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
-    //         map: map,
-    //         title: eachLocation.name
-    //     });
-    // }
-
 }
 
 /* Creates Custom Marker onto the Map */
@@ -398,11 +399,14 @@ function onYouTubeIframeAPIReady() {
             'onReady': onPlayerReady
         }
     });
+
 }
+
 
 //Youtube API will call this function when the video player is ready.
 function onPlayerReady(event) {
     event.target.playVideo();
+    player.loadVideoById("ye8KvYKn9-0");
 }
 
 

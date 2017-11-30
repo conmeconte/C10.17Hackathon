@@ -13,6 +13,11 @@ html, body {
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'skyfall';
+    src: url('fonts/SkyFall Done.ttf');
+}
+
 
 #initialModal {
     position: absolute;
@@ -38,11 +43,10 @@ html, body {
 
 #map {
     float: left;
-    height: 20%;
-    width: 20%;
+    height: 30%;
+    width: 30%;
     position: absolute;
     z-index: 2;
-
 }
 
 #pano {
@@ -58,9 +62,38 @@ html, body {
     background-size:100% 100%;
     background-repeat: no-repeat;
     font-size:1vw;
-    color: #1de9b6;
+    color: black;
+    font-weight: bolder;
+    font-family: 'skyfall';
+}
+.btn:hover{
+    color: white;
+    background-color:black;
+    width: 15vw;
+    height: 15vh;
+    font-weight: 900;
+    position:absolute;
+    border: 4px solid rgba(145, 189, 9, 0.22);
+    -webkit-animation-name: greenPulse;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    font-family: 'skyfall';
+
+
+}
+@-webkit-keyframes greenPulse {
+    from { background-color: #c7ff21; -webkit-box-shadow: 0 0 18px #333; }
+    50% { background-color: #91bd09; -webkit-box-shadow: 0 0 36px #91bd09; }
+    to { background-color: #749a02; -webkit-box-shadow: 0 0 18px #333; }
 }
 
+.btn:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    font-family: 'skyfall';
+
+}
 .logo {
     height: 15vh;
     width: auto;
@@ -91,6 +124,8 @@ html, body {
     padding:1px;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     color: white;
+    font-family: 'skyfall';
+
 
 }
 .currentHint>p{
@@ -114,6 +149,22 @@ html, body {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+#myModal{
+    font-family: 'skyfall';
+    font-size: 2vw;
+    color: #241aff;
+    position:absolute;
+}
+#myModalP{
+    display:inline-block;
+}
+
+#myModalImg{
+    width: 10%;
+    position: relative;
+    float:right;
+
+}
 
 /* Initial Modal Content */
 .modal-content {
@@ -123,7 +174,7 @@ html, body {
     border: 1px solid #888;
     width: 50%;
     top:50%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 /* The Close Button */
@@ -197,7 +248,7 @@ html, body {
     height: auto;
 }
 
-
+/* -------------- avatars -------------- */
 
 #instructions {
     position: absolute;
