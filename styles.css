@@ -26,10 +26,11 @@ html, body {
     transform: translate(-20%, -20%);
     height: 100%;
     width: 100%;
-    background-image: url("img/judi_m2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    /*background-image: url("img/judi_m2.jpg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
     z-index: 3;
+    background-color: black;
 }
 
 #missionButton {
@@ -267,8 +268,28 @@ html, body {
 
 /* -------------- avatars -------------- */
 
-#instructions {
+#mIntro, #moneyPenny, #q, #honeyRyder, #mCongrats {
     position: absolute;
     top: 50vh;
     left: 73vw;
 }
+
+/*#mIntro {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#moneyPenny {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#q {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#honeyRyder {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#mCongrats {*/
+    /*visibility: hidden;*/
+/*}*/

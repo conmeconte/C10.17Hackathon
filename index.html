@@ -39,42 +39,34 @@
 
     <button id="myBtn" class="btn-info">See Hint Again</button>
 
-
-
-
-    <div id="instructions">
-        <script type="text/javascript" src="//vhss-d.oddcast.com/vhost_embed_functions_v2.php?acc=6600898&js=1"></script>
-
-        <script id="q" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591825, 0,1,0,'ff0d4969e90826958aeb67791d584310',0);</script>
-        <script id="moneyPenny" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591827, 0,1,0,'dc1de7097fdf57ff2fbabbeba5179227',0);</script>
-        <script id="honeyRyder" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591830, 0,1,0,'c3cabee946fd5742f75b7b9c279b48a0',0);</script>
-        <script id="mIntro" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591822, 0,1,0,'79881395b455f897667c9705d28d79ce',0);</script>
-        <script id="mCongrats" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591860, 0,1,0,'b61dec89d8c8568c535418bb28bd1f20',0);</script>
-    </div>
-        <!--<img src="img/mPhone.PNG" id="m">-->
-
-
-
-
     <!-- Button just for Testing -->
     <button id="myBtn">Open Modal</button>
 
     <div id="midModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
+
+            <p id='myModalP'></p>
+            <!--<img id="myModalImg">-->
             <p id='midModalP'></p>
             <p id='midModalP2'></p>
-            <img id="midModalImg">
+
 
         </div>
     </div>
 
     <div id = "initialModal">
 
-        <div class = "gameInfo">
-            <p>Welcome 007</p>
-            <img id="initialModalImg">
-        </div>
+        <!--<div class = "gameInfo">-->
+            <!--<p>Welcome 007</p>-->
+            <!--<img id="initialModalImg">-->
+        <!--</div>-->
+
+        <video width="320" height="240" controls>
+            <source src="videos/" type="video/mov">
+            Your browser does not support the video tag.
+        </video>
+
         <button id = "missionButton">Begin Mission</button>
 
     </div>
@@ -82,6 +74,7 @@
     <div id="finalModal">
         <h1>Who committed the crime?</h1>
         <div class="suspects">
+
             <div class="villainPics v0"></div>
             <div class="villainPics v1"></div>
             <div class="villainPics v2"></div>
