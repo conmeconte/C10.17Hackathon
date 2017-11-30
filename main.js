@@ -8,10 +8,9 @@ $(document).ready(init);
 //     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
 // }];
 
-// Commented out so it doesn't speak every time you load...
-// function welcomePlayer(){
-//     responsiveVoice.speak("Congratulations, double oh seven!");
-// }
+function welcomePlayer(){
+    responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
+}
 
 //map variables
 var map;
@@ -124,9 +123,12 @@ function init(){
     });
     handleClicks();
     loadMovieFromServer();
-    
-    $(".villainPics").append(villain1pic);
-    $(".villainNames").append(villain1name);
+
+
+    $(".villainPics").append();
+    $(".villainNames").append();
+
+
     $(".v1, .v2, .v3").on("click", chooseMastermind);
 };
 
@@ -172,7 +174,7 @@ function pickMissionLocations(array){  //This function returns three location ob
 
 function chooseMastermind(){
     var choice = $(event.target).text();
-    if(choice === selectedVillain){
+    if(choice === selectedVillain.name){
         console.log("You win!");
     } else {
         console.log("You lose!");
@@ -188,7 +190,6 @@ function chooseMastermind(){
 //         threeTriviaObj.concat(IndTrivia);
 //     }
 // }
-
 
 /*Once begin button clicked calls the function to trigger first modal*/
 /*takes in array of trivias and renders a random trivia from array to be posted on the modal */
@@ -206,11 +207,15 @@ function triggerTrivia(){
 /*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
 function nextLocation(){
     if(missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
+        $("#q").css('visibility', 'hidden');
+        $("#moneyPenny").css('visibility', 'visible');
         $('#myModalImg').attr("src", "img/jamesBond.png");
         locationCounter++;
         triggerTrivia();
     }else{
-        $('.modal-content p').text("You fell into a trap!");
+        // $('.modal-content p').text("You fell into a trap!");
+        $("#moneyPenny").css('visibility', 'hidden');
+        $("#q").css('visibility', 'visible');
         $('#myModalImg').attr("src", "img/blood-007.png");
         $('#myModal').css('display', 'block');
         wrongChoiceCounter++;
@@ -242,7 +247,6 @@ function moveLocationsOnClick(){
     map.setCenter({lat:  this.location[0], lng: this.location[1]+0.1});
     map.streetView.setPosition({lat:  this.location[0], lng: this.location[1]});
 }
-
 
 function selectMusic(){
     var index = $(event.target).index();
@@ -403,11 +407,14 @@ function onYouTubeIframeAPIReady() {
 }
 
 
+
+// MAKE SURE TO UNCOMMENT
+
 //Youtube API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.playVideo();
-    player.loadVideoById("ye8KvYKn9-0");
-}
+// function onPlayerReady(event) {
+//     event.target.playVideo();
+//     player.loadVideoById("ye8KvYKn9-0");
+// }
 
 
 //Start of Movie Database Info
@@ -417,7 +424,6 @@ function loadMovieFromServer(){
         api_key: '9104cf02',
         t: 'Goldfinger'
     };
-
 
     var ajaxOptions = {
         method: 'get',

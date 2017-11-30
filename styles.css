@@ -250,8 +250,29 @@ html, body {
 
 /* -------------- avatars -------------- */
 
-#instructions {
+#mIntro, #moneyPenny, #q, #honeyRyder, #mCongrats {
     position: absolute;
     top: 50vh;
     left: 73vw;
+    border: 5px solid white;
 }
+
+/*#mIntro {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#moneyPenny {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#q {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#honeyRyder {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#mCongrats {*/
+    /*visibility: hidden;*/
+/*}*/
