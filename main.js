@@ -94,7 +94,7 @@ function init(){
     });
     $('.close').click(function(){
         $('#myModal').css('display','none');
-    })
+    });
     window.onclick = function(event) {
         if (event.target == $('#myModal')[0]) {
             $('#myModal').css('display','none');
@@ -104,6 +104,7 @@ function init(){
     handleClicks();
 
 };
+
 
 function handleClicks(){
     $('#missionButton').click(function(){
@@ -356,6 +357,10 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
     event.target.playVideo();
 }
+
+//Start of Movie Database Info
+
+
 
 
 
