@@ -16,7 +16,12 @@
 
 </head>
 <body>
-<div id="player"></div><!--This has no size, but it is needed for youtube-->
+<div id = "initialModal">
+    <button type="button">Button</button>
+    <button id = "closeButton">Close</button>
+</div>
+    <div id="player"></div><!--This has no size, but it is needed for youtube-->
+        <img class="logo" src="img/wine.png">
 <div id="pano">
     <div id="map"></div>
 </div>
@@ -24,9 +29,23 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxO9JS83Rg55e9r39gzrd-kVXfINYGbvA&callback=mapCreate">
 </script>
 <div class="locationBtns"></div>
-<img class="subTitle" src="img/logo.png"></img>
 <img src="img/mPhone.PNG" id="m">
 
+
+
+
+
+<!-- Button just for Testing -->
+<button id="myBtn">Open Modal</button>
+
+<div id="myModal" class="modal">
+
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>
+
+</div>
 
 </body>
 </html>

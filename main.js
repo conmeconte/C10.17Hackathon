@@ -64,18 +64,18 @@ var locationObj=[
 
 var villains = [
     {name: "Auric Goldfinger",
-    photo: "villain_images/a_Goldfinger.jpg",
+    photo: "img/a_Goldfinger.jpg",
     trivia: ["Claims to be an expert pistol shot that never misses",
     "Is a Jeweller and Smuggler",
     "Has a manservant named Oddjob"]
     },
     {name: "Alec Trevelyan",
-    photo: "villain_images/Alec_Trevelyan.jpg",
+    photo: "img/Alec_Trevelyan.jpg",
     trivia: ["Formerly agent 006 of MI6",
     "Also known as Janus",]
     },
     {name: "Raoul Silva",
-    photo: "villain_images/raoul_silva.png",
+    photo: "img/raoul_silva.png",
     trivia: ["Former partner of Olivia Mansfield (M)",
     "Cyber-terrorist",
     "Captured, tortured, and imprisoned by the Chinese"]
@@ -88,6 +88,28 @@ var crimes = [" has stolen the GoldenEye satellite and intends to erase the Bank
 
 function init(){
     createLocationButton(locationObj);
+
+    $('#myBtn').click(function() {
+        $('#myModal').css('display', "block");
+    });
+    $('.close').click(function(){
+        $('#myModal').css('display','none');
+    });
+    window.onclick = function(event) {
+        if (event.target == $('#myModal')[0]) {
+            $('#myModal').css('display','none');
+        }
+    };
+
+    handleClicks();
+
+};
+
+
+function handleClicks(){
+    $('#closeButton').click(function(){
+        $("#initialModal").hide();
+    })
 }
 
 function randomizer(arr){
@@ -102,7 +124,7 @@ function indexRandomizer(arr){  //Finds random index in array.
 
 function villainTriviaRandomizer(arr){
         var chosenVillain = randomizer(arr);
-  return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
+        return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
 
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
@@ -119,10 +141,30 @@ function pickMissionLocations(array){  //This function returns three location ob
 
     var location3index = indexRandomizer(slice);
     missionLocations.push(slice[location3index]);
-    return missionLocations;
+    /*Will call the addTriviaToModal function*/
+    addTriviaToModal(missionLocations);
 }
 
 console.log(pickMissionLocations(locationObj));
+
+
+/*Adds selected locations trivia to the modals*/
+var threeTriviaObj=[];
+function addTriviaToModal(threeObjArray){
+
+    for(var local_i=0; local_i<threeObjArray.length; local_i++){
+        var trivia= threeObjArray[local_i].trivia;
+        threeTriviaObj.push(trivia);
+    }
+}
+
+
+/*Once begin button clicked calls the function to trigger first modal*/
+function triggerFirstTrivia(){
+    $('.modal-content p').text(threeTriviaObj[0]);
+    $('#myModal').css('display', 'block');
+}
+
 
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
@@ -264,31 +306,22 @@ function mapCreate() {
 
 }
 
-
+/* Creates Custom Marker onto the Map */
 function markerMaker(){
     var image = {
         url: "img/Reticle.png",
-        // This marker is 20 pixels wide by 32 pixels high.
-        // size: new google.maps.Size(2000, 2000),
-        // // The origin for this image is (0, 0).
-        // origin: new google.maps.Point(0, 0),
-        // // The anchor for this image is the base of the flagpole at (0, 32).
-        // anchor: new google.maps.Point(0, 0)
+        size: new google.maps.Size(45, 45),
+        scaledSize: new google.maps.Size(30, 30),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 0)
     };
-    // Shapes define the clickable region of the icon. The type defines an HTML
-    // // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-    // // The final coordinate closes the poly by connecting to the first coordinate.
-    // var shape = {
-    //     coords: [1, 1, 1, 20, 18, 20, 18, 1],
-    //     type: 'poly'
-    // };
+
     for(var marker_i=0; marker_i<locationObj.length; marker_i++) {
         var eachLocation = locationObj[marker_i];
         var marker = new google.maps.Marker({
             position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
             map: map,
             icon: image,
-            shape: shape,
             title: eachLocation.name,
             zIndex: 3
         });
@@ -329,4 +362,11 @@ function onPlayerReady(event) {
 
 
 
+
+
+
+
+
+var M = [];
+responsiveVoice.speak('This is a test, and I hope that it works.');
 
