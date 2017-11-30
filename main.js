@@ -22,6 +22,9 @@ var panorama;
 var player;
 var vidID;
 
+//villain variables
+var selectedVillain;
+
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
         "This is the largest city in Europe.",
@@ -117,7 +120,7 @@ function init(){
     loadMovieFromServer();
 };
 
-var selectedVillain;
+
 function handleClicks(){
     $('#missionButton').click(function(){
         $("#initialModal").hide();
