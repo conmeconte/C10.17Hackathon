@@ -162,7 +162,7 @@ function villainTriviaRandomizer(arr){
     return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
-
+    missionLocations=[];
     var slice = array.slice(0);
 
     var location1index = indexRandomizer(slice);
@@ -214,16 +214,20 @@ function triggerTrivia(){
 /*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
 
 function nextLocation(){
-    if(missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
+    if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
         $('#midModalImg').attr("src", "img/jamesBond.png");
         locationCounter++;
         triggerTrivia();
-    }else{
+    }else if(locationCounter>=2){
+        winningModal();
+
+    }
+    else{
         $('.modal-content p').text("You fell into a trap!");
         $('#midModalImg').attr("src", "img/blood-007.png");
         $('#midModal').css('display', 'block');
         wrongChoiceCounter++;
-        checkLosingCondition();
+        losingModal();
         gunSound.play();
     }
 
@@ -231,7 +235,7 @@ function nextLocation(){
 
 /*If player clicks wrong choice more than 5 times this function trigger*/
 
-function checkLosingCondition(){
+function losingModal(){
     if(locationCounter+wrongChoiceCounter>=5){
         $('#initialModal p').text("You Lose");
         $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
@@ -239,6 +243,14 @@ function checkLosingCondition(){
         $('#missionButton').text('Try Again');
 
     }
+}
+
+
+function winningModal(){
+        $('#initialModal p').text("You Got the Villain");
+        $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
+        $('#initialModal').css('display', 'block');
+        $('#missionButton').text('Play Again');
 }
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
@@ -411,7 +423,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //  This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 
-/*function onYouTubeIframeAPIReady() {
+function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '0',
         width: '0',
@@ -422,7 +434,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         }
     });
 
-}*/
+}
 
 
 //Youtube API will call this function when the video player is ready.
