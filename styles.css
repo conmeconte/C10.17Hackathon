@@ -55,7 +55,7 @@ html, body {
     display: block;
     width: 12vw;
     height:6.6vh;
-    background-size:cover;
+    background-size:100% 100%;
     background-repeat: no-repeat;
     font-size:1vw;
     color: #1de9b6;
