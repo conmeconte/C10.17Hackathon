@@ -6,6 +6,7 @@ html, body {
     overflow: hidden;
 }
 
+
 #initialModal{
     position: absolute;
     top: 20%;
@@ -16,6 +17,7 @@ html, body {
     background-color: white;
     z-index: 50;
 }
+
 #map {
     float: left;
     height: 20%;
@@ -24,37 +26,44 @@ html, body {
     z-index: 2;
 
 }
-#pano{
+
+#pano {
     float:left;
     height:100%;
     width: 60%;
-
 }
 
-.btn{
+.btn {
     display: block;
     width: 10vw;
     height:6.6vh;
-
 }
-.locationBtns{
+
+.logo {
+    height: 15vh;
+    width: auto;
+    position: absolute;
+    top: 1vh;
+    left: 75vw;
+}
+
+.locationBtns {
     display:inline-block;
     margin-top: 0.3%;
 }
-#m{
+
+#m {
     width: 20%;
     position: absolute;
     bottom: -17vh;
     right: -4vw;
-
-}
-.subTitle{
-    position: absolute;
-    right: 0vw;
-    width: 29.5%;
-    height:20%;
-    top:0vh;
-    box-shadow: -1px 1px 10px 5px #888888;
 }
 
-
+/*.subTitle {*/
+    /*position: absolute;*/
+    /*right: 0vw;*/
+    /*width: 29.5%;*/
+    /*height:20%;*/
+    /*top:0vh;*/
+    /*box-shadow: -1px 1px 10px 5px #888888;*/
+/*}*/
