@@ -89,8 +89,9 @@ var villains = [
     },
     {name: "Alec Trevelyan",
     photo: "img/Alec_Trevelyan.jpg",
-    trivia: ["Formerly agent 006 of MI6",
-    "Also known as Janus",]
+    trivia: ["Formerly, agent 006 of MI6",
+    "Also known as Janus",
+    "007's partner on several missions"]
     },
     {name: "Raoul Silva",
     photo: "img/raoul_silva.png",
