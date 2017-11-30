@@ -300,3 +300,20 @@ html, body {
 /*#mCongrats {*/
     /*visibility: hidden;*/
 /*}*/
+
+/*}*/
+
+
+.success {
+    display: none;
+}
+
+.closeModal {
+    color: black;
+    float: right;
+    font-size: 4vmin;
+    font-weight: bold;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
