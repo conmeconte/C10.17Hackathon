@@ -107,7 +107,7 @@ var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase t
 function init(){
     createLocationButton(locationObj);
     $('#myBtn').click(function() {
-        $('#myModal').css('display', "block");
+        $('#myModal').css('display', "block"); 
 
     });
     $('.close').click(function(){
