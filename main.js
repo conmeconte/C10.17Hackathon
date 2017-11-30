@@ -143,7 +143,6 @@ function handleClicks(){
         gunSound.play();
         $("#initialModal").hide();
         pickMissionLocations(locationObj);
-        selectedVillain=randomizer(villains);
         locationCounter=0;
         wrongChoiceCounter=0;
     })
@@ -151,7 +150,7 @@ function handleClicks(){
 
 function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
     var random = arr[Math.floor(Math.random() * arr.length)];
-    return random;
+    selectedVillain= random;
 }
 
 function indexRandomizer(arr){  //Finds random index in array.
@@ -159,9 +158,9 @@ function indexRandomizer(arr){  //Finds random index in array.
     return random;
 }
 
-function villainTriviaRandomizer(arr){
-    var chosenVillain = randomizer(arr);
-    return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
+function villainTriviaRandomizer(){
+    randomizer(villains);
+    return selectedVillain.trivia[Math.floor(Math.random() * selectedVillain.trivia.length)];
 }
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
     missionLocations=[];
@@ -178,7 +177,11 @@ function pickMissionLocations(array){  //This function returns three location ob
 
     var location3index = indexRandomizer(slice);
     missionLocations.push(slice[location3index]);
-    triggerTrivia();
+
+
+    triggerTrivia(villainTriviaRandomizer());
+
+
 }
 
 
@@ -219,12 +222,14 @@ function chooseMastermind(){
 /*Once begin button clicked calls the function to trigger first modal*/
 /*takes in array of trivias and renders a random trivia from array to be posted on the modal */
 
-function triggerTrivia(){
+function triggerTrivia(villainTriv){
     if(missionLocations.length>=locationCounter) {
         var pickTrivia=missionLocations[locationCounter].trivia;
         var randomIndex=Math.floor(Math.random() * pickTrivia.length);
-        $('.modal-content p').text(pickTrivia[randomIndex]);
+        $('#midModalP').text(pickTrivia[randomIndex]);
+        $('#midModalP2').text(villainTriv);
         $('.currentHint p').text(pickTrivia[randomIndex]);
+        $('#villainTr').text(villainTriv);
         $('#midModal').css('display', 'block');
     }
 }
