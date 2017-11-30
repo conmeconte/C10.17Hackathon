@@ -8,10 +8,9 @@ $(document).ready(init);
 //     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
 // }];
 
-// Commented out so it doesn't speak every time you load...
-// function welcomePlayer(){
-//     responsiveVoice.speak("Congratulations, double oh seven!");
-// }
+function welcomePlayer(){
+    responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
+}
 
 //map variables
 var map;
@@ -112,9 +111,13 @@ var villains = [
     }
 ];
 
-var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
-              "Someone is planning to contaminate a major water supply, killing everyone and then stealing 15 billion in gold bullion.",
-              "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."];
+var crimes = [
+    {mission: "Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
+        movie: "videos/missionGoldenEye.mov"},
+    {mission: "Someone is planning to contaminate a major water supply, killing everyone and then stealing 15 billion in gold bullion.",
+        movie: "videos/missionFortKnox.mov"},
+    {missio: "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world.",
+        movie: "videos/missionMI6.mov"}]
 
 function init(){
     createLocationButton(locationObj);
@@ -137,9 +140,13 @@ function init(){
     });
     handleClicks();
     loadFinalModalItems();
-    
-
 };
+
+function missionBriefing(arr){
+    var random = Math.floor(Math.random()*arr.length);
+    var mission = crimes[random].mission;
+    var video = crimes[random].movie;
+}
 
 function handleClicks(){
     $('#missionButton').click(function(){
@@ -161,7 +168,7 @@ function handleClicks(){
 
 function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
     var random = arr[Math.floor(Math.random() * arr.length)];
-    return random;
+    selectedVillain= random;
 }
 
 function indexRandomizer(arr){  //Finds random index in array.
@@ -169,9 +176,9 @@ function indexRandomizer(arr){  //Finds random index in array.
     return random;
 }
 
-function villainTriviaRandomizer(arr){
-    var chosenVillain = randomizer(arr);
-    return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
+function villainTriviaRandomizer(){
+    randomizer(villains);
+    return selectedVillain.trivia[Math.floor(Math.random() * selectedVillain.trivia.length)];
 }
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
     missionLocations=[];
@@ -188,7 +195,11 @@ function pickMissionLocations(array){  //This function returns three location ob
 
     var location3index = indexRandomizer(slice);
     missionLocations.push(slice[location3index]);
-    triggerTrivia();
+
+
+    triggerTrivia(villainTriviaRandomizer());
+
+
 }
 
 
@@ -210,9 +221,6 @@ function chooseMastermind(image){ //pass in movie poster
     var foundVillainIndex = $(event.target).index();
     var choice = $(event.target).text();
     if(choice === selectedVillain.name){
-        win = true;
-    }
-    if (win){
         $('.villainPics.v0').css({
             'background-image': 'url('+villains[foundVillainIndex].photo+')',
             'background-size': 'cover',
@@ -241,16 +249,17 @@ function chooseMastermind(image){ //pass in movie poster
 //     }
 // }
 
-
 /*Once begin button clicked calls the function to trigger first modal*/
 /*takes in array of trivias and renders a random trivia from array to be posted on the modal */
 
-function triggerTrivia(){
+function triggerTrivia(villainTriv){
     if(missionLocations.length>=locationCounter) {
         var pickTrivia=missionLocations[locationCounter].trivia;
         var randomIndex=Math.floor(Math.random() * pickTrivia.length);
-        $('.modal-content p').text(pickTrivia[randomIndex]);
+        $('#midModalP').text(pickTrivia[randomIndex]);
+        $('#midModalP2').text(villainTriv);
         $('.currentHint p').text(pickTrivia[randomIndex]);
+        $('#villainTr').text(villainTriv);
         $('#midModal').css('display', 'block');
     }
 }
@@ -258,6 +267,7 @@ function triggerTrivia(){
 /*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
 
 function nextLocation(){
+
     if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
         $('#midModalImg').attr("src", "img/jamesBond.png");
         locationCounter++;
@@ -320,7 +330,6 @@ function moveLocationsOnClick(){
     map.setCenter({lat:  this.location[0], lng: this.location[1]+0.1});
     map.streetView.setPosition({lat:  this.location[0], lng: this.location[1]});
 }
-
 
 function selectMusic(){
     var index = $(event.target).index();
@@ -481,11 +490,14 @@ function onYouTubeIframeAPIReady() {
 }
 
 
+
+// MAKE SURE TO UNCOMMENT
+
 //Youtube API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.playVideo();
-    player.loadVideoById("ye8KvYKn9-0");
-}
+// function onPlayerReady(event) {
+//     event.target.playVideo();
+//     player.loadVideoById("ye8KvYKn9-0");
+// }
 
 
 //Start of Movie Database Info
@@ -495,7 +507,6 @@ function loadMovieFromServer(title){
         apikey: '9104cf02',
         t: title
     };
-
 
     var ajaxOptions = {
         method: 'GET',
