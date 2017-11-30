@@ -1,12 +1,12 @@
 
 $(document).ready(init);
 
-var missionInstructions = [{
-    gameStart: "Good morning, James. " + crimes[0] + ". Please find out who it is and stop him!",
-    nextLocation: "You just missed him! He is on his way to " + locationObj[0].trivia[0],
-    pickVillain: "You have caught up to the culprit! Based on the clues you received, who do you think was the mastermind?",
-    congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
-}];
+// var missionInstructions = [{
+//     gameStart: "Good morning, James. " + crimes[0] + ". Please find out who it is and stop him!",
+//     nextLocation: "You just missed him! He is on his way to " + locationObj[0].trivia[0],
+//     pickVillain: "You have caught up to the culprit! Based on the clues you received, who do you think was the mastermind?",
+//     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
+// }];
 
 // Commented out so it doesn't speak every time you load...
 // function welcomePlayer(){
@@ -23,49 +23,49 @@ var player;
 var vidID;
 
 var locationObj=[
-    {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE', trivia: [
+    {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
         "This is the largest city in Europe.",
         "The world's first public zoo first opened here in 1829.",
         "This city is the first to host the Olympics three times (1908, 1948 and 2012).",
         "The famous 221B Baker St. address is actually located at 187 North Gower St.",
         "One of the most famous bands in the world played their last gig on the roof of Apple Corps."]},
-    {id: 2, name: "Istanbul", location: [41.0081056,28.9810191], youTubeId:'8C5NLfYdZaE', trivia: "This is the only city in the world to straddle two continents: Asia and Europe."},
-    {id: 3, name: "Venice", location: [45.4384184,12.3359239], youTubeId:'mOgFS6AYoVc', trivia: "This city is made up of 118 islands."},
-    {id: 4, name: "New York", location: [40.7536533,-73.9806382], youTubeId:'b07Z_qfchFk', trivia: "15,152 forms of life have been found in the city's train system (including insects and bacteria)."},
-    {id: 5, name: "Tokyo", location: [35.7141231,139.7966704], youTubeId:'Q_w4DVgvVHs', trivia: "With a population of 26.5 million, this city is the largest in the world in terms of total population size."},
-    {id: 6, name: "Las Vegas", location: [36.1126258,-115.1767051], youTubeId:'ZwbEuzJCnqI', trivia: "Michael Jackson had plans to build a 50 foot tall moon walking robot replica of himself to roam the desert of this city. It was intended to be an advertisement for a planned 2005 comeback."},
-    {id: 7, name: "Cairo", location: [29.9778574,31.1287904], youTubeId:'at7xLnfubFY', trivia: [
+    {id: 2, name: "Istanbul", location: [41.0081056,28.9810191], youTubeId:'8C5NLfYdZaE',flagSrc: "img/Turkey.png", trivia: "This is the only city in the world to straddle two continents: Asia and Europe."},
+    {id: 3, name: "Venice", location: [45.4384184,12.3359239], youTubeId:'mOgFS6AYoVc', flagSrc: "img/italy.png",trivia: "This city is made up of 118 islands."},
+    {id: 4, name: "New York", location: [40.7536533,-73.9806382], youTubeId:'b07Z_qfchFk',flagSrc: "img/usa.png", trivia: "15,152 forms of life have been found in the city's train system (including insects and bacteria)."},
+    {id: 5, name: "Tokyo", location: [35.7141231,139.7966704], youTubeId:'Q_w4DVgvVHs', flagSrc: "img/japan.png", trivia: "With a population of 26.5 million, this city is the largest in the world in terms of total population size."},
+    {id: 6, name: "Las Vegas", location: [36.1126258,-115.1767051], youTubeId:'ZwbEuzJCnqI',flagSrc: "img/usa.png", trivia: "Michael Jackson had plans to build a 50 foot tall moon walking robot replica of himself to roam the desert of this city. It was intended to be an advertisement for a planned 2005 comeback."},
+    {id: 7, name: "Cairo", location: [29.9778574,31.1287904], youTubeId:'at7xLnfubFY',flagSrc: "img/egypt.png", trivia: [
         "This city's name means 'Vanquisher', supposedly because Mars was rising at the time it was founded.",
         "With an estimated population of 22 million, this is the largest city in Africa and the Middle East.",
         "This city is home to the only remaining ancient 7 Wonders of the World.",
         "In this city, Sunday is the first day of week and the weekend is Friday and Saturday.",
         "There are two large islands in the middle of this city."]},
-    {id: 8, name: "Beirut", location: [33.8969085,35.5023606], youTubeId:'PSbj2Mx2By8', trivia: "There are 15 rivers in the country this city is in (all of them coming from its own mountains), and despite surrounding deserts, this country has none."},
-    {id: 9, name: "Moscow", location: [55.7530756,37.62217], youTubeId:'6lRuXckWC_8', trivia: [
+    {id: 8, name: "Beirut", location: [33.8969085,35.5023606], youTubeId:'PSbj2Mx2By8',flagSrc: "img/lebanon.jpg", trivia: "There are 15 rivers in the country this city is in (all of them coming from its own mountains), and despite surrounding deserts, this country has none."},
+    {id: 9, name: "Moscow", location: [55.7530756,37.62217], youTubeId:'6lRuXckWC_8',flagSrc: "img/russia.png", trivia: [
         "This city boasts the largest number of billionaires in the world.",
         "The highest tower in Europe with an overall height of 540 m is located here.",
         "It's common to see stray dogs riding the metro into the city in search of food here.",
         "The world’s largest medieval fortress can be found here."]},
-    {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:'H95y-F2kgoQ', trivia: [
+    {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:'H95y-F2kgoQ',flagSrc: "img/germany.png", trivia: [
         "While in this city, JKF proclaimed that he was a 'jelly donut'.",
         "This is the only city in the world with three active opera houses.",
         "The longest open air gallery in the world is located here.",
         "This city is nine times bigger than Paris.",
         "This city has more bridges than Venice, but the city is also much bigger than the tiny Italian island."]},
-    {id: 11, name: "Prague", location: [50.0875638,14.4212062], youTubeId:'YnzgdBAKyJo', trivia: [
+    {id: 11, name: "Prague", location: [50.0875638,14.4212062], youTubeId:'YnzgdBAKyJo',flagSrc: "img/prag.png", trivia: [
         "This city has a graffiti wall devoted to John Lennon even though he never visited the country.",
         "The Dancing House was inspired by Fred Astaire and Ginger Rogers.",
         "The locals drink more beer per capita than any other country in the world.",
         "The very first book about Mozart was published here.",
         "The Rolling Stones paid $32,000 to light up a monument in this city - a sight many tourist continue to enjoy to this day."]},
-    {id: 12, name: "Havana", location: [23.1401843,-82.3508177], youTubeId:'QNYlNmWfnxo', trivia: "Singer Gloria Estefan was born here."},
-    {id: 13, name: "Shanghai", location: [31.239481,121.4998016], youTubeId:'DeumyOzKqgI', trivia: "This city has the second tallest building in the world, standing at 2,073 feet."},
-    {id: 14, name: "Rio De Janeiro", location: [-22.9522173,-43.2102183], youTubeId:'3gDboKGn-Sw', trivia: [
+    {id: 12, name: "Havana", location: [23.1401843,-82.3508177], youTubeId:'QNYlNmWfnxo',flagSrc: "img/costaRica.png", trivia: "Singer Gloria Estefan was born here."},
+    {id: 13, name: "Shanghai", location: [31.239481,121.4998016], youTubeId:'DeumyOzKqgI',flagSrc: "img/china.png", trivia: "This city has the second tallest building in the world, standing at 2,073 feet."},
+    {id: 14, name: "Rio De Janeiro", location: [-22.9522173,-43.2102183], youTubeId:'3gDboKGn-Sw',flagSrc: "img/brazil.png", trivia: [
         "This city is named after a river that doesn't exist and means January River.",
         "One of its most famous landmarks has been labeled one of the world's New 7 Wonders of the World.",
         "This city hosts the largest carnival celebration in the world!",
         "For five days a year, the city is run by a mythical jester named King Momo."]},
-    {id: 15, name: "Sydney", location: [-33.8590761,151.2221537], youTubeId:'hJzotJUlQws', trivia: [
+    {id: 15, name: "Sydney", location: [-33.8590761,151.2221537], youTubeId:'hJzotJUlQws',flagSrc: "img/australia.png", trivia: [
         "This city has the widest long-span bridge and tallest steel arch bridge in the world.",
         "One of this city's landmark's is known by the locals as 'The Coat Hanger' due to its distinct shape.",
         "Cricket and rugby are the most popular sports here."]}
@@ -99,8 +99,6 @@ var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase t
 
 function init(){
     createLocationButton(locationObj);
-
-
     $('#myBtn').click(function() {
         $('#myModal').css('display', "block");
     });
@@ -112,17 +110,19 @@ function init(){
             $('#myModal').css('display','none');
         }
     };
-
+    $('.btn').click(nextLocation);
     handleClicks();
 
     loadMovieFromServer();
 
 };
 
-
+var selectedVillain;
 function handleClicks(){
     $('#missionButton').click(function(){
         $("#initialModal").hide();
+        pickMissionLocations(locationObj);
+        selectedVillain=randomizer(villains);
     })
 }
 
@@ -140,9 +140,9 @@ function villainTriviaRandomizer(arr){
     var chosenVillain = randomizer(arr);
     return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
-
+var missionLocations = [];
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
-    var missionLocations = [];
+
     var slice = array.slice(0);
 
     var location1index = indexRandomizer(slice);
@@ -155,30 +155,43 @@ function pickMissionLocations(array){  //This function returns three location ob
 
     var location3index = indexRandomizer(slice);
     missionLocations.push(slice[location3index]);
-    /*Will call the addTriviaToModal function*/
-    addTriviaToModal(missionLocations);
+    triggerTrivia();
 }
 
-console.log(pickMissionLocations(locationObj));
 
 
 /*Adds selected locations trivia to the modals*/
-var threeTriviaObj=[];
-function addTriviaToModal(threeObjArray){
 
-    for(var local_i=0; local_i<threeObjArray.length; local_i++){
-        var trivia= threeObjArray[local_i].trivia;
-        threeTriviaObj.push(trivia);
-    }
-}
+// function addTriviaToModal(threeObjArray){
+//
+//     for(var local_i=0; local_i<threeObjArray.length; local_i++){
+//         var IndTrivia= threeObjArray[local_i].trivia;
+//         threeTriviaObj.concat(IndTrivia);
+//     }
+// }
 
 
 /*Once begin button clicked calls the function to trigger first modal*/
-function triggerFirstTrivia(){
-    $('.modal-content p').text(threeTriviaObj[0]);
-    $('#myModal').css('display', 'block');
+var locationCounter=0;
+function triggerTrivia(){
+    if(missionLocations.length>=locationCounter) {
+        $('.modal-content p').text(missionLocations[locationCounter].trivia);
+        $('.currentHint p').text(missionLocations[locationCounter].trivia);
+        $('#myModal').css('display', 'block');
+    }
 }
 
+/*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
+function nextLocation(){
+    if(missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
+        locationCounter++;
+        triggerTrivia();
+    }else{
+        $('.modal-content p').text("He is not here, but hey feel free to look around");
+        $('#myModal').css('display', 'block');
+    }
+
+}
 
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
@@ -190,7 +203,8 @@ function createLocationButton(locations){
         var buttonElem=$('<button>').addClass("btn btn-primary");
         var place=locations[location_i];
         place.domElement=buttonElem;
-        buttonElem.text(locations[location_i].name);
+        buttonElem.text(place.name);
+        buttonElem.css('background-image',"url("+place.flagSrc+")");
         buttonElem.on('click',moveLocationsOnClick.bind(place));
         $('.locationBtns').append(buttonElem);
     }
