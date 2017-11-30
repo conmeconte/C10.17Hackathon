@@ -35,8 +35,12 @@ html, body {
 
 .btn {
     display: block;
-    width: 10vw;
+    width: 12vw;
     height:6.6vh;
+    background-size:cover;
+    background-repeat: no-repeat;
+    font-size:1vw;
+    color: #1de9b6;
 }
 
 .logo {
@@ -59,7 +63,23 @@ html, body {
     right: -4vw;
 }
 
+.currentHint{
+    float: right;
+    width: 20%;
+    height: 20%;
+    position: relative;
+    top: 18%;
+    margin-right:3%;
+    padding:1px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    color: white;
 
+}
+.currentHint>p{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 /*===========================================MODAL====================================*/
 /* The Modal (background) */
