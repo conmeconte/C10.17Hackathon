@@ -9,7 +9,7 @@ var missionInstructions = [{
 }];
 
 function welcomePlayer(){
-    responsiveVoice.speak(missionInstructions[0]);
+    responsiveVoice.speak("Congratulations, double oh seven!");
 }
 
 //map variables

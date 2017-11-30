@@ -77,7 +77,7 @@ html, body {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
+/* Initial Modal Content */
 .modal-content {
     background-color: rgba(255,255,255,0.8);
     margin: auto;
@@ -105,3 +105,5 @@ html, body {
 #myModal{
     z-index:3;
 }
+
+/* Final Modal Content */
