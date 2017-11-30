@@ -23,17 +23,19 @@ var player;
 var vidID;
 
 //villain variables
-var selectedVillain = {name: "Auric Goldfinger",
-    photo: "img/a_Goldfinger.jpg",
-    trivia: ["Claims to be an expert pistol shot that never misses",
-        "Is a Jeweller and Smuggler",
-        "Has a manservant named Oddjob"]
-};
+var selectedVillain;
 
 //Used for location Guesses
 var missionLocations = [];
 var locationCounter=0;
 var wrongChoiceCounter=0;
+
+
+/*Sound file Sources */
+var gunSound= new Audio();
+gunSound.src= "sounds/gunsound2.mp3";
+
+var missionLocations = [];
 
 
 var locationObj=[
@@ -94,8 +96,9 @@ var villains = [
     },
     {name: "Alec Trevelyan",
     photo: "img/Alec_Trevelyan.jpg",
-    trivia: ["Formerly agent 006 of MI6",
-    "Also known as Janus",]
+    trivia: ["Formerly, agent 006 of MI6",
+    "Also known as Janus",
+    "007's partner on several missions"]
     },
     {name: "Raoul Silva",
     photo: "img/raoul_silva.png",
@@ -112,15 +115,16 @@ var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase t
 function init(){
     createLocationButton(locationObj);
     $('#myBtn').click(function() {
-        $('#myModal').css('display', "block"); 
+        $('#midModal').css('display', "block");
+
 
     });
     $('.close').click(function(){
-        $('#myModal').css('display','none');
+        $('#midModal').css('display','none');
     });
     window.onclick = function(event) {
-        if (event.target == $('#myModal')[0]) {
-            $('#myModal').css('display','none');
+        if (event.target == $('#midModal')[0]) {
+            $('#midModal').css('display','none');
         }
     };
     $('.btn').click(function(){
@@ -136,9 +140,12 @@ function init(){
 
 function handleClicks(){
     $('#missionButton').click(function(){
+        gunSound.play();
         $("#initialModal").hide();
         pickMissionLocations(locationObj);
         selectedVillain=randomizer(villains);
+        locationCounter=0;
+        wrongChoiceCounter=0;
     });
     $('.villainNames').click(chooseMastermind);
 }
@@ -157,8 +164,8 @@ function villainTriviaRandomizer(arr){
     var chosenVillain = randomizer(arr);
     return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
-
-function pickMissionLocations(array){  //This function returns three location objects at random for game start.  Set to three for now, but will take in a random number in future versions.
+function pickMissionLocations(array){  //This function returns three location objects at random for game start.
+    missionLocations=[];
 
     var slice = array.slice(0);
 
@@ -219,25 +226,51 @@ function triggerTrivia(){
         var randomIndex=Math.floor(Math.random() * pickTrivia.length);
         $('.modal-content p').text(pickTrivia[randomIndex]);
         $('.currentHint p').text(pickTrivia[randomIndex]);
-        $('#myModal').css('display', 'block');
+        $('#midModal').css('display', 'block');
     }
 }
 
 /*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
+
 function nextLocation(){
-    if(missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
-        $('#myModalImg').attr("src", "img/jamesBond.png");
+    if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
+        $('#midModalImg').attr("src", "img/jamesBond.png");
         locationCounter++;
         triggerTrivia();
-    }else{
+    }else if(locationCounter>=2){
+        winningModal();
+
+    }
+    else{
         $('.modal-content p').text("You fell into a trap!");
-        $('#myModalImg').attr("src", "img/blood-007.png");
-        $('#myModal').css('display', 'block');
+        $('#midModalImg').attr("src", "img/blood-007.png");
+        $('#midModal').css('display', 'block');
         wrongChoiceCounter++;
+        losingModal();
+        gunSound.play();
     }
 
 }
 
+/*If player clicks wrong choice more than 5 times this function trigger*/
+
+function losingModal(){
+    if(locationCounter+wrongChoiceCounter>=5){
+        $('#initialModal p').text("You Lose");
+        $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
+        $('#initialModal').css('display', 'block');
+        $('#missionButton').text('Try Again');
+
+    }
+}
+
+
+function winningModal(){
+        $('#initialModal p').text("You Got the Villain");
+        $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
+        $('#initialModal').css('display', 'block');
+        $('#missionButton').text('Play Again');
+}
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
 Each button created contains the specific location object with its properties such as location coordinate*/
