@@ -35,10 +35,20 @@ html, body {
 #missionButton {
     font-family: "spectre", sans-serif;
     position: relative;
-    top: 65%;
-    left: 10%;
+    top: 26vh;
+    left: 24vw;
     background-color: #FFD700;
-    font-size: 50px;
+    font-size: 5vh;
+}
+
+.gameInfo{
+    display: flex;
+    height: 36vh;
+    width: 30vw;
+    background-color: white;
+    position: relative;
+    top: 11vh;
+    left: 23vw;
 }
 
 #map {
