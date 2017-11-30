@@ -305,6 +305,16 @@ html, body {
     display: none;
 }
 
+.closeModal {
+    color: black;
+    float: right;
+    font-size: 4vmin;
+    font-weight: bold;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
 .introVideo {
     position: absolute;
     top: 20vh;
