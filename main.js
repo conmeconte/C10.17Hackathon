@@ -101,6 +101,17 @@ function villainTriviarandomizer(randomizer){
 
 }
 
+function missionProgress(threeObjArray){
+    var triviaArray=[];
+    for(var local_i=0; local_i<threeObjArray.length; local_i++){
+        var trivia= threeObjArray[local_i].trivia;
+        var modal=$()
+    }
+
+}
+
+
+
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
 Each button created contains the specific location object with its properties such as location coordinate*/
 
@@ -240,7 +251,7 @@ function mapCreate() {
 
 }
 
-
+/* Creates Custom Marker onto the Map */
 function markerMaker(){
     var image = {
         url: "img/Reticle.png",
@@ -249,20 +260,13 @@ function markerMaker(){
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(0, 0)
     };
-    // Shapes define the clickable region of the icon. The type defines an HTML
-    // // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-    // // The final coordinate closes the poly by connecting to the first coordinate.
-    // var shape = {
-    //     coords: [1, 1, 1, 20, 18, 20, 18, 1],
-    //     type: 'poly'
-    // };
+
     for(var marker_i=0; marker_i<locationObj.length; marker_i++) {
         var eachLocation = locationObj[marker_i];
         var marker = new google.maps.Marker({
             position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
             map: map,
             icon: image,
-            // shape: shape,
             title: eachLocation.name,
             zIndex: 3
         });
