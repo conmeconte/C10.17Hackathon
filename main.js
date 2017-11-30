@@ -243,7 +243,7 @@ function chooseMastermind(image){ //pass in movie poster
         $('.villainNames.v1').hide();
         $('.villainNames.v2').text(villains[foundVillainIndex].movie);
     } else {
-        //trigger loser modal.
+        losingModal();
     }
 
 }
@@ -304,7 +304,6 @@ function losingModal(){
         $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
         $('#missionButton').text('Try Again');
-
     }
 }
 
