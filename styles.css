@@ -57,9 +57,26 @@ html, body {
     background-size:100% 100%;
     background-repeat: no-repeat;
     font-size:1vw;
-    color: #1de9b6;
+    color: #fff411;
+    font-family: 'spectre';
+}
+.btn:hover{
+    color: black;
+    background-image: url("#");
+    width: 15vw;
+    height: 10vh;
+    font-weight: 900;
+    font-family: 'spectre';
+
 }
 
+
+.btn:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+    font-family: 'spectre';
+}
 .logo {
     height: 15vh;
     width: auto;
