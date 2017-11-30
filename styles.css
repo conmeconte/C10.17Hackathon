@@ -102,8 +102,15 @@ html, body {
     text-decoration: none;
     cursor: pointer;
 }
-#myModal{
+#cluesModal{
     z-index:3;
 }
 
 /* Final Modal Content */
+
+#finalModal {
+    height: 75vh;
+    width: 75vw;
+    background-color: red;
+
+}

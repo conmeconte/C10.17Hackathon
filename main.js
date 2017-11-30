@@ -8,9 +8,10 @@ var missionInstructions = [{
     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
 }];
 
-function welcomePlayer(){
-    responsiveVoice.speak("Congratulations, double oh seven!");
-}
+// Commented out so it doesn't speak every time you load...
+// function welcomePlayer(){
+//     responsiveVoice.speak("Congratulations, double oh seven!");
+// }
 
 //map variables
 var map;
