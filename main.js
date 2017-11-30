@@ -102,6 +102,7 @@ function init(){
 
     $('#myBtn').click(function() {
         $('#myModal').css('display', "block");
+
     });
     $('.close').click(function(){
         $('#myModal').css('display','none');
@@ -111,11 +112,9 @@ function init(){
             $('#myModal').css('display','none');
         }
     };
-    $('.btn').click(nextLocation);
+    $('.btn').click(nextLocation,selectMusic);
     handleClicks();
-
     loadMovieFromServer();
-
 };
 
 var selectedVillain;
@@ -220,7 +219,13 @@ function moveLocationsOnClick(){
 }
 
 
-
+function selectMusic(){
+    var index = $(this).index();
+    console.log("music",event.target);
+    console.log("index", index);
+    var musicSrc=locationObj[index].youTubeId;
+    player.loadVideoByID(musicSrc);
+}
 
 /*Google API to create the map and streetview on pageload*/
 function mapCreate() {
