@@ -35,8 +35,6 @@ var wrongChoiceCounter=0;
 var gunSound= new Audio();
 gunSound.src= "sounds/gunsound2.mp3";
 
-var missionLocations = [];
-
 
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
@@ -90,18 +88,21 @@ var locationObj=[
 var villains = [
     {name: "Auric Goldfinger",
     photo: "img/a_Goldfinger.jpg",
+    movie: "Goldfinger",
     trivia: ["Claims to be an expert pistol shot that never misses",
     "Is a Jeweller and Smuggler",
     "Has a manservant named Oddjob"]
     },
     {name: "Alec Trevelyan",
     photo: "img/Alec_Trevelyan.jpg",
+    movie: "GoldenEye",
     trivia: ["Formerly, agent 006 of MI6",
     "Also known as Janus",
     "007's partner on several missions"]
     },
     {name: "Raoul Silva",
     photo: "img/raoul_silva.png",
+    movie: "SkyFall"
     trivia: ["Former partner of Olivia Mansfield (M)",
     "Cyber-terrorist",
     "Captured, tortured, and imprisoned by the Chinese"]
