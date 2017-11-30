@@ -26,29 +26,30 @@ html, body {
     transform: translate(-20%, -20%);
     height: 100%;
     width: 100%;
-    background-image: url("img/judi_m2.jpg");
+    background-image: url("img/bondbarrel.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     z-index: 3;
 }
 
 #missionButton {
     font-family: "spectre", sans-serif;
     position: relative;
-    top: 26vh;
-    left: 24vw;
+    top: 44vh;
+    left: 9vw;
     background-color: #FFD700;
-    font-size: 5vh;
+    font-size: 8vh;
 }
 
 .gameInfo{
-    display: flex;
-    height: 36vh;
+    display: inline-flex;
+    height: 75vh;
     width: 30vw;
-    background-color: white;
+    background-color: black;
     position: relative;
-    top: 11vh;
-    left: 23vw;
+    top: 6vh;
+    left: 2vw;
+    opacity: 0.3;
 }
 
 #map {
@@ -134,7 +135,7 @@ html, body {
     padding:1px;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     color: white;
-    font-family: 'skyfall';
+    font-family: 'spectre';
     overflow: auto;
 
 
