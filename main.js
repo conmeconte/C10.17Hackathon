@@ -88,8 +88,15 @@ var crimes = [" has stolen the GoldenEye satellite and intends to erase the Bank
 
 function init(){
     createLocationButton(locationObj);
+    handleClicks();
 
 };
+
+function handleClicks(){
+    $('#closeButton').click(function(){
+        $("#initialModal").hide();
+    })
+}
 
 function randomizer(arr){
     var random = arr[Math.floor(Math.random() * arr.length)];
@@ -103,7 +110,7 @@ function indexRandomizer(arr){  //Finds random index in array.
 
 function villainTriviaRandomizer(arr){
         var chosenVillain = randomizer(arr);
-  return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
+        return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
 
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
