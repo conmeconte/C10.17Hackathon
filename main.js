@@ -88,8 +88,7 @@ var crimes = [" has stolen the GoldenEye satellite and intends to erase the Bank
 
 function init(){
     createLocationButton(locationObj);
-
-};
+}
 
 function randomizer(arr){
     var random = arr[Math.floor(Math.random() * arr.length)];
@@ -325,5 +324,9 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
     event.target.playVideo();
 }
+
+//Start of Movie Database Info
+
+
 
 
