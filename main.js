@@ -26,8 +26,10 @@ var vidID;
 var selectedVillain;
 
 //Used for location Guesses
+var missionLocations = [];
 var locationCounter=0;
 var wrongChoiceCounter=0;
+
 
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
@@ -53,7 +55,7 @@ var locationObj=[
         "The highest tower in Europe with an overall height of 540 m is located here.",
         "It's common to see stray dogs riding the metro into the city in search of food here.",
         "The world’s largest medieval fortress can be found here."]},
-    {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:'H95y-F2kgoQ',flagSrc: "img/germany.png", trivia: [
+    {id: 10, name: "Berlin", location: [52.5163767,13.3788291], youTubeId:'6D1nK7q2i8I',flagSrc: "img/germany.png", trivia: [
         "While in this city, JKF proclaimed that he was a 'jelly donut'.",
         "This is the only city in the world with three active opera houses.",
         "The longest open air gallery in the world is located here.",
@@ -78,8 +80,6 @@ var locationObj=[
         "Cricket and rugby are the most popular sports here."]}
 ];
 
-//music added will need to be called later.  player.loadVideoByID(locationObj.youTubeId);
-
 var villains = [
     {name: "Auric Goldfinger",
     photo: "img/a_Goldfinger.jpg",
@@ -101,7 +101,7 @@ var villains = [
 ];
 
 var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
-              "Someone is planning to contaminate the water supply at Fort Knox, killing everyone and then stealing 15 billion in gold bullion.",
+              "Someone is planning to contaminate a major water supply, killing everyone and then stealing 15 billion in gold bullion.",
               "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."];
 
 function init(){
@@ -124,10 +124,9 @@ function init(){
     });
     handleClicks();
     loadMovieFromServer();
+    loadFinalModalItems();
     
-    $(".villainPics").append(villain1pic);
-    $(".villainNames").append(villain1name);
-    $(".v1, .v2, .v3").on("click", chooseMastermind);
+
 };
 
 function handleClicks(){
@@ -152,8 +151,8 @@ function villainTriviaRandomizer(arr){
     var chosenVillain = randomizer(arr);
     return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
-var missionLocations = [];
-function pickMissionLocations(array){  //This function returns three location objects at random for game start.
+
+function pickMissionLocations(array){  //This function returns three location objects at random for game start.  Set to three for now, but will take in a random number in future versions.
 
     var slice = array.slice(0);
 
@@ -170,6 +169,21 @@ function pickMissionLocations(array){  //This function returns three location ob
     triggerTrivia();
 }
 
+
+//Populate final modal
+function loadFinalModalItems() {
+    for (var i=0; i<villains.length; i++){
+        $('.villainPics.v'+i).css({
+            'background-image': 'url('+villains[i].photo+')',
+            'background-size': 'cover',
+            'background-repeat': 'no-repeat'
+        });
+        $('.villainNames.v'+i).text(villains[i].name);
+    }
+//     $(".v0, .v1, .v2").on("click", chooseMastermind);
+}
+
+//Accuse a villain in final modal
 function chooseMastermind(){
     var choice = $(event.target).text();
     if(choice === selectedVillain){
@@ -442,4 +456,5 @@ function loadMovieFromServer(){
 
     $.ajax(ajaxOptions);
 }
+
 
