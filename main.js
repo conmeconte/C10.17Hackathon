@@ -88,6 +88,17 @@ var crimes = [" has stolen the GoldenEye satellite and intends to erase the Bank
 
 function init(){
     createLocationButton(locationObj);
+    $('#myBtn').click(function() {
+        $('#myModal').css('display', "block");
+    });
+    $('.close').click(function(){
+        $('#myModal').css('display','none');
+    })
+    window.onclick = function(event) {
+        if (event.target == $('#myModal')[0]) {
+            $('#myModal').css('display','none');
+        }
+    }
 
 };
 
@@ -115,7 +126,8 @@ function pickMissionLocations(array){  //This function returns three location ob
 
     var location3index = indexRandomizer(slice);
     missionLocations.push(slice[location3index]);
-    return missionLocations;
+    /*Will call the addTriviaToModal function*/
+    addTriviaToModal(missionLocations);
 }
 
 console.log(pickMissionLocations(locationObj));
@@ -125,13 +137,21 @@ function villainTriviarandomizer(randomizer){
 
 }
 
-function missionProgress(threeObjArray){
-    var triviaArray=[];
+/*Adds selected locations trivia to the modals*/
+var threeTriviaObj=[];
+function addTriviaToModal(threeObjArray){
+
     for(var local_i=0; local_i<threeObjArray.length; local_i++){
         var trivia= threeObjArray[local_i].trivia;
-        var modal=$()
+        threeTriviaObj.push(trivia);
     }
+}
 
+
+/*Once begin button clicked calls the function to trigger first modal*/
+function triggerFirstTrivia(){
+    $('.modal-content p').text(threeTriviaObj[0]);
+    $('#myModal').css('display', 'block');
 }
 
 
@@ -328,3 +348,6 @@ function onPlayerReady(event) {
 }
 
 
+
+
+/*===================================MODAL==========================================*/
