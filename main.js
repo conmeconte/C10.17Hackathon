@@ -23,7 +23,12 @@ var player;
 var vidID;
 
 //villain variables
-var selectedVillain;
+var selectedVillain = {name: "Auric Goldfinger",
+    photo: "img/a_Goldfinger.jpg",
+    trivia: ["Claims to be an expert pistol shot that never misses",
+        "Is a Jeweller and Smuggler",
+        "Has a manservant named Oddjob"]
+};
 
 //Used for location Guesses
 var missionLocations = [];
@@ -134,7 +139,8 @@ function handleClicks(){
         $("#initialModal").hide();
         pickMissionLocations(locationObj);
         selectedVillain=randomizer(villains);
-    })
+    });
+    $('.villainNames').click(chooseMastermind);
 }
 
 function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
@@ -184,9 +190,9 @@ function loadFinalModalItems() {
 }
 
 //Accuse a villain in final modal
-function chooseMastermind(){
+function chooseMastermind(event){
     var choice = $(event.target).text();
-    if(choice === selectedVillain){
+    if(choice === selectedVillain.name){
         console.log("You win!");
     } else {
         console.log("You lose!");
