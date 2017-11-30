@@ -31,71 +31,59 @@
     <div class="locationBtns"></div>
 
     <div class="currentHint">
+        <h3>Next Location Hint</h3>
         <p>Hint</p>
+        <h3>Villain Trivia</h3>
+        <p id="villainTr"></p>
     </div>
 
     <button id="myBtn" class="btn-info">See Hint Again</button>
 
-    <!---------------    start avatars   --------------->
-
-    <script type="text/javascript" src="//vhss-d.oddcast.com/vhost_embed_functions_v2.php?acc=6600898&js=1"></script>
-
-    <div id="mIntro">
-        <script type="text/javascript">AC_VHost_Embed(6600898,281,375,'',1,1, 2591822, 0,1,0,'6eea7c001abc6ebe4d8f7030660e1925',0);</script>
-    </div>
-
-    <div id="mCongrats">
-        <script type="text/javascript">AC_VHost_Embed(6600898,281,375,'',1,1, 2591860, 0,1,0,'7401c57c8459a5d20db64e2e63ea567b',0);</script>
-    </div>
-
-    <!--<div id="moneyPenny">-->
-        <!--<script type="text/javascript">AC_VHost_Embed(6600898,281,375,'',1,1, 2591827, 0,1,0,'88f4750525e3214454ab624e01b24e26',0);</script>-->
-    <!--</div>-->
-
-    <!--<div id="q">-->
-        <!--<script type="text/javascript">AC_VHost_Embed(6600898,281,375,'',1,1, 2591825, 0,1,0,'851a727034f9165288f218931463d472',0);</script>-->
-    <!--</div>-->
-
-    <!--<div id="honeyRyder">-->
-        <!--<script type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591830, 0,1,0,'247a6d1f8e2f02cec6865d8f4a006a4a',0);</script>-->
-    <!--</div>-->
-
-    <!---------------    end avatars   --------------->
-
     <!-- Button just for Testing -->
     <button id="myBtn">Open Modal</button>
 
-    <div id="myModal" class="modal">
+    <div id="midModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
 
             <p id='myModalP'></p>
             <!--<img id="myModalImg">-->
+            <p id='midModalP'></p>
+            <p id='midModalP2'></p>
+
 
         </div>
     </div>
 
     <div id = "initialModal">
 
-        <div id="mIntro">
-            <script type="text/javascript">AC_VHost_Embed(6600898,281,375,'',1,1, 2591822, 0,1,0,'6eea7c001abc6ebe4d8f7030660e1925',0);</script>
-        </div>
+        <!--<div class = "gameInfo">-->
+            <!--<p>Welcome 007</p>-->
+            <!--<img id="initialModalImg">-->
+        <!--</div>-->
+
+        <video width="320" height="240" controls>
+            <source src="videos/" type="video/mov">
+            Your browser does not support the video tag.
+        </video>
 
         <button id = "missionButton">Begin Mission</button>
+
     </div>
 
     <div id="finalModal">
-        <h1>Whodunit?</h1>
+        <h1>Who committed the crime?</h1>
         <div class="suspects">
-            <div class="villainPics"></div>
-            <div class="villainPics"></div>
-            <div class="villainPics"></div>
+
+            <div class="villainPics v0"></div>
+            <div class="villainPics v1"></div>
+            <div class="villainPics v2"></div>
         </div>
         <br>
         <div class="suspects">
+            <div class="villainNames v0"></div>
             <div class="villainNames v1"></div>
             <div class="villainNames v2"></div>
-            <div class="villainNames v3"></div>
         </div>
     </div>
 
