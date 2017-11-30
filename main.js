@@ -214,8 +214,7 @@ function loadFinalModalItems() {
 }
 
 //Accuse a villain in final modal
-function chooseMastermind(image){ //pass in movie poster
-    var win = false;
+function chooseMastermind(poster){ //pass in movie poster
     var foundVillainIndex = $(event.target).index();
     var choice = $(event.target).text();
     if(choice === selectedVillain.name){
@@ -224,9 +223,11 @@ function chooseMastermind(image){ //pass in movie poster
             'background-size': 'cover',
             'background-repeat': 'no-repeat'
         });
-        //Put video here.
+
+        $('.villainPics.v1').hide();
+        $('.success').css('display', 'block');
         $('.villainPics.v2').css({
-            'background-image': 'url('+image+')'
+            'background-image': 'url('+poster+')'
         });
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();

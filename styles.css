@@ -295,3 +295,7 @@ html, body {
 /*#mCongrats {*/
     /*visibility: hidden;*/
 /*}*/
+
+.success {
+    display: none;
+}
