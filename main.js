@@ -1,6 +1,18 @@
 
 $(document).ready(init);
 
+var missionInstructions = [{
+    gameStart: "Good morning, James. " + crimes[0] + ". Please find out who it is and stop him!",
+    nextLocation: "You just missed him! He is on his way to " + locationObj[0].trivia[0],
+    pickVillain: "You have caught up to the culprit! Based on the clues you received, who do you think was the mastermind?",
+    congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
+}];
+
+// Commented out so it doesn't speak every time you load...
+// function welcomePlayer(){
+//     responsiveVoice.speak("Congratulations, double oh seven!");
+// }
+
 //map variables
 var map;
 var fenway;
@@ -11,7 +23,6 @@ var player;
 var vidID;
 
 var locationObj=[
-
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE', trivia: [
         "This is the largest city in Europe.",
         "The world's first public zoo first opened here in 1829.",
@@ -82,12 +93,13 @@ var villains = [
     }
 ];
 
-var crimes = [" has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
-              " is planning to contaminate the water supply at Fort Knox, killing everyone and then stealing 15 billion in gold bullion.",
-              " has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."];
+var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
+              "Someone is planning to contaminate the water supply at Fort Knox, killing everyone and then stealing 15 billion in gold bullion.",
+              "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."];
 
 function init(){
     createLocationButton(locationObj);
+
 
     $('#myBtn').click(function() {
         $('#myModal').css('display', "block");
@@ -102,18 +114,19 @@ function init(){
     };
 
     handleClicks();
+
     loadMovieFromServer();
 
 };
 
 
 function handleClicks(){
-    $('#closeButton').click(function(){
+    $('#missionButton').click(function(){
         $("#initialModal").hide();
     })
 }
 
-function randomizer(arr){
+function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
     var random = arr[Math.floor(Math.random() * arr.length)];
     return random;
 }
@@ -124,8 +137,8 @@ function indexRandomizer(arr){  //Finds random index in array.
 }
 
 function villainTriviaRandomizer(arr){
-        var chosenVillain = randomizer(arr);
-        return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
+    var chosenVillain = randomizer(arr);
+    return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 }
 
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
@@ -359,6 +372,7 @@ function onPlayerReady(event) {
     event.target.playVideo();
 }
 
+
 //Start of Movie Database Info
 
 function loadMovieFromServer(){
@@ -391,15 +405,4 @@ function loadMovieFromServer(){
 
     $.ajax(ajaxOptions);
 }
-
-
-
-
-
-
-
-
-
-var M = [];
-responsiveVoice.speak('This is a test, and I hope that it works.');
 
