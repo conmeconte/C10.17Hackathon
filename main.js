@@ -88,7 +88,6 @@ var crimes = [" has stolen the GoldenEye satellite and intends to erase the Bank
 
 function init(){
     createLocationButton(locationObj);
-
     $('#myBtn').click(function() {
         $('#myModal').css('display', "block");
     });
@@ -108,6 +107,7 @@ function init(){
 function handleClicks(){
     $('#closeButton').click(function(){
         $("#initialModal").hide();
+        pickMissionLocations(locationObj);
     })
 }
 
