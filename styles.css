@@ -135,14 +135,15 @@ html, body {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     color: white;
     font-family: 'skyfall';
+    overflow: auto;
 
 
 }
-.currentHint>p{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
+/*.currentHint>p{*/
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
+/*}*/
 
 /*===========================================MODAL====================================*/
 /* The Modal (background) */
@@ -218,6 +219,7 @@ html, body {
     transform: translate(-50%, -50%);
     border-radius: 25px;
     z-index: 200;
+    display: none;
 }
 
 #finalModal h1 {
