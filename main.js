@@ -114,7 +114,7 @@ function init(){
     };
     $('.btn').click(nextLocation,selectMusic);
     handleClicks();
-
+    loadMovieFromServer();
 };
 
 var selectedVillain;
@@ -393,5 +393,36 @@ function onPlayerReady(event) {
 }
 
 
-
 //Start of Movie Database Info
+
+function loadMovieFromServer(){
+    var dataToSend = {
+        api_key: '9104cf02',
+        t: 'Goldfinger'
+    };
+
+
+    var ajaxOptions = {
+        method: 'get',
+        dataType: 'json',
+        data: dataToSend,
+        url: "http://www.omdbapi.com/?i=tt3896198&apikey=9104cf02",
+        success: functionToRunOnSuccess,
+        error: functionToRunOnError
+    };
+
+    function functionToRunOnError(error){
+        console.log('There was an error retrieving your data', error); //What do we want to do on error?
+    }
+
+    function functionToRunOnSuccess(movie){
+        console.log('movie: ', movie);
+        console.log(movie.Poster);
+        var posterImage = $('<img>').attr('src', movie.Poster);
+        // $('body').append(posterImage);
+        // proves that it works but not actually useful here.  Have to figure out where to append and when.
+    }
+
+    $.ajax(ajaxOptions);
+}
+
