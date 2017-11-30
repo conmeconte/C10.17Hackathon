@@ -8,35 +8,49 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="main.js" type="text/javascript"></script>
     <link rel="stylesheet" href="styles.css" type="text/css">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <title>The World Is Not Enough</title>
-
 </head>
 
+<!--<body onload="welcomePlayer()">-->
+<body>
 
-<body onload="welcomePlayer()">
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxO9JS83Rg55e9r39gzrd-kVXfINYGbvA&callback=mapCreate">
     </script>
+
     <img class="logo" src="img/wine.png">
-    <!--<div id="finalModal">-->
-    <!--</div>-->
+
     <div id="player"></div><!--This has no size, but it is needed for youtube-->
+
     <div id="pano">
         <div id="map"></div>
     </div>
 
     <div class="locationBtns"></div>
+
     <div class="currentHint">
         <p>Hint</p>
     </div>
 
-
     <button id="myBtn" class="btn-info">See Hint Again</button>
-    <img src="img/mPhone.PNG" id="m">
+
+
+
+
+    <div id="instructions">
+        <script type="text/javascript" src="//vhss-d.oddcast.com/vhost_embed_functions_v2.php?acc=6600898&js=1"></script>
+
+        <script id="q" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591825, 0,1,0,'ff0d4969e90826958aeb67791d584310',0);</script>
+        <script id="moneyPenny" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591827, 0,1,0,'dc1de7097fdf57ff2fbabbeba5179227',0);</script>
+        <script id="honeyRyder" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591830, 0,1,0,'c3cabee946fd5742f75b7b9c279b48a0',0);</script>
+        <script id="mIntro" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591822, 0,1,0,'79881395b455f897667c9705d28d79ce',0);</script>
+        <script id="mCongrats" type="text/javascript">AC_VHost_Embed(6600898,300,400,'',1,1, 2591860, 0,1,0,'b61dec89d8c8568c535418bb28bd1f20',0);</script>
+    </div>
+        <!--<img src="img/mPhone.PNG" id="m">-->
+
+
 
 
     <!-- Button just for Testing -->
@@ -46,7 +60,6 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>Some text in the Modal..</p>
-
         </div>
     </div>
 
@@ -54,8 +67,20 @@
         <button id = "missionButton">Begin Mission</button>
     </div>
 
-
-
+    <div id="finalModal">
+        <h1>Whodunit?</h1>
+        <div class="suspects">
+            <div class="villainPics v1"></div>
+            <div class="villainPics v2"></div>
+            <div class="villainPics v3"></div>
+        </div>
+        <br>
+        <div class="suspects">
+            <div class="villainNames v1"></div>
+            <div class="villainNames v2"></div>
+            <div class="villainNames v3"></div>
+        </div>
+    </div>
 
 </body>
 

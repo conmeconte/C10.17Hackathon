@@ -118,8 +118,11 @@ function init(){
     $('.btn').click(nextLocation,selectMusic);
     handleClicks();
     loadMovieFromServer();
-};
 
+    $(".villainPics").append(villain1pic);
+    $(".villainNames").append(villain1name);
+    $(".v1, .v2, .v3").on("click", chooseMastermind);
+};
 
 function handleClicks(){
     $('#missionButton').click(function(){
@@ -161,7 +164,14 @@ function pickMissionLocations(array){  //This function returns three location ob
     triggerTrivia();
 }
 
-
+function chooseMastermind(){
+    var choice = $(event.target).text();
+    if(choice === selectedVillain){
+        console.log("You win!");
+    } else {
+        console.log("You lose!");
+    }
+}
 
 /*Adds selected locations trivia to the modals*/
 
