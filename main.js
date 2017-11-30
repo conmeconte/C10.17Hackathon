@@ -113,15 +113,15 @@ var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase t
 function init(){
     createLocationButton(locationObj);
     $('#myBtn').click(function() {
-        $('#myModal').css('display', "block");
+        $('#midModal').css('display', "block");
 
     });
     $('.close').click(function(){
-        $('#myModal').css('display','none');
+        $('#midModal').css('display','none');
     });
     window.onclick = function(event) {
-        if (event.target == $('#myModal')[0]) {
-            $('#myModal').css('display','none');
+        if (event.target == $('#midModal')[0]) {
+            $('#midModal').css('display','none');
         }
     };
     $('.btn').click(function(){
@@ -130,9 +130,11 @@ function init(){
     });
     handleClicks();
     loadMovieFromServer();
-
+    
+    $(".villainPics").append(villain1pic);
+    $(".villainNames").append(villain1name);
+    $(".v1, .v2, .v3").on("click", chooseMastermind);
 };
-
 
 function handleClicks(){
     $('#missionButton').click(function(){
@@ -176,7 +178,14 @@ function pickMissionLocations(array){  //This function returns three location ob
     triggerTrivia();
 }
 
-
+function chooseMastermind(){
+    var choice = $(event.target).text();
+    if(choice === selectedVillain){
+        console.log("You win!");
+    } else {
+        console.log("You lose!");
+    }
+}
 
 /*Adds selected locations trivia to the modals*/
 
@@ -198,7 +207,7 @@ function triggerTrivia(){
         var randomIndex=Math.floor(Math.random() * pickTrivia.length);
         $('.modal-content p').text(pickTrivia[randomIndex]);
         $('.currentHint p').text(pickTrivia[randomIndex]);
-        $('#myModal').css('display', 'block');
+        $('#midModal').css('display', 'block');
     }
 }
 
@@ -206,13 +215,13 @@ function triggerTrivia(){
 
 function nextLocation(){
     if(missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
-        $('#myModalImg').attr("src", "img/jamesBond.png");
+        $('#midModalImg').attr("src", "img/jamesBond.png");
         locationCounter++;
         triggerTrivia();
     }else{
         $('.modal-content p').text("You fell into a trap!");
-        $('#myModalImg').attr("src", "img/blood-007.png");
-        $('#myModal').css('display', 'block');
+        $('#midModalImg').attr("src", "img/blood-007.png");
+        $('#midModal').css('display', 'block');
         wrongChoiceCounter++;
         checkLosingCondition();
         gunSound.play();
@@ -402,7 +411,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 //  This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 
-function onYouTubeIframeAPIReady() {
+/*function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '0',
         width: '0',
@@ -413,7 +422,7 @@ function onYouTubeIframeAPIReady() {
         }
     });
 
-}
+}*/
 
 
 //Youtube API will call this function when the video player is ready.
