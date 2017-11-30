@@ -101,6 +101,11 @@ function indexRandomizer(arr){  //Finds random index in array.
     return random;
 }
 
+function villainTriviaRandomizer(arr){
+        var chosenVillain = randomizer(arr);
+  return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
+}
+
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
     var missionLocations = [];
     var slice = array.slice(0);
@@ -120,10 +125,6 @@ function pickMissionLocations(array){  //This function returns three location ob
 
 console.log(pickMissionLocations(locationObj));
 
-function villainTriviarandomizer(randomizer){
-
-
-}
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
 Each button created contains the specific location object with its properties such as location coordinate*/
