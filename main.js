@@ -8,10 +8,9 @@ $(document).ready(init);
 //     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
 // }];
 
-// Commented out so it doesn't speak every time you load...
-// function welcomePlayer(){
-//     responsiveVoice.speak("Congratulations, double oh seven!");
-// }
+function welcomePlayer(){
+    responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
+}
 
 //map variables
 var map;
@@ -35,7 +34,8 @@ var wrongChoiceCounter=0;
 var gunSound= new Audio();
 gunSound.src= "sounds/gunsound2.mp3";
 
-var missionLocations = [];
+//poster variable
+var moviePoster;
 
 
 var locationObj=[
@@ -90,27 +90,34 @@ var locationObj=[
 var villains = [
     {name: "Auric Goldfinger",
     photo: "img/a_Goldfinger.jpg",
+    movie: "Goldfinger",
     trivia: ["Claims to be an expert pistol shot that never misses",
     "Is a Jeweller and Smuggler",
     "Has a manservant named Oddjob"]
     },
     {name: "Alec Trevelyan",
     photo: "img/Alec_Trevelyan.jpg",
+    movie: "GoldenEye",
     trivia: ["Formerly, agent 006 of MI6",
     "Also known as Janus",
     "007's partner on several missions"]
     },
     {name: "Raoul Silva",
     photo: "img/raoul_silva.png",
+    movie: "SkyFall",
     trivia: ["Former partner of Olivia Mansfield (M)",
     "Cyber-terrorist",
     "Captured, tortured, and imprisoned by the Chinese"]
     }
 ];
 
-var crimes = ["Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
-              "Someone is planning to contaminate a major water supply, killing everyone and then stealing 15 billion in gold bullion.",
-              "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world."];
+var crimes = [
+    {mission: "Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
+        movie: "videos/missionGoldenEye.mov"},
+    {mission: "Someone is planning to contaminate a major water supply, killing everyone and then stealing 15 billion in gold bullion.",
+        movie: "videos/missionFortKnox.mov"},
+    {missio: "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world.",
+        movie: "videos/missionMI6.mov"}]
 
 function init(){
     createLocationButton(locationObj);
@@ -132,19 +139,30 @@ function init(){
         selectMusic();
     });
     handleClicks();
-    loadMovieFromServer();
     loadFinalModalItems();
-    
-
 };
+
+function missionBriefing(arr){
+    var random = Math.floor(Math.random()*arr.length);
+    var mission = crimes[random].mission;
+    var video = crimes[random].movie;
+}
 
 function handleClicks(){
     $('#missionButton').click(function(){
         gunSound.play();
         $("#initialModal").hide();
         pickMissionLocations(locationObj);
+        selectedVillain=randomizer(villains);
+        loadMovieFromServer(selectedVillain.movie);
         locationCounter=0;
         wrongChoiceCounter=0;
+    });
+    $('.villainNames').click(function(){
+        chooseMastermind(moviePoster);
+    });
+    $('.temporaryFinalModal').click(function(){
+        $('#finalModal').css('display','block');
     })
 }
 
@@ -195,17 +213,30 @@ function loadFinalModalItems() {
         });
         $('.villainNames.v'+i).text(villains[i].name);
     }
-//     $(".v0, .v1, .v2").on("click", chooseMastermind);
 }
 
 //Accuse a villain in final modal
-function chooseMastermind(){
+function chooseMastermind(image){ //pass in movie poster
+    var win = false;
+    var foundVillainIndex = $(event.target).index();
     var choice = $(event.target).text();
-    if(choice === selectedVillain){
-        console.log("You win!");
+    if(choice === selectedVillain.name){
+        $('.villainPics.v0').css({
+            'background-image': 'url('+villains[foundVillainIndex].photo+')',
+            'background-size': 'cover',
+            'background-repeat': 'no-repeat'
+        });
+        //Put video here.
+        $('.villainPics.v2').css({
+            'background-image': 'url('+image+')'
+        });
+        $('.villainNames.v0').text(villains[foundVillainIndex].name);
+        $('.villainNames.v1').hide();
+        $('.villainNames.v2').text(villains[foundVillainIndex].movie);
     } else {
-        console.log("You lose!");
+        //trigger loser modal.
     }
+
 }
 
 /*Adds selected locations trivia to the modals*/
@@ -217,7 +248,6 @@ function chooseMastermind(){
 //         threeTriviaObj.concat(IndTrivia);
 //     }
 // }
-
 
 /*Once begin button clicked calls the function to trigger first modal*/
 /*takes in array of trivias and renders a random trivia from array to be posted on the modal */
@@ -237,6 +267,7 @@ function triggerTrivia(villainTriv){
 /*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
 
 function nextLocation(){
+
     if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
         $('#midModalImg').attr("src", "img/jamesBond.png");
         locationCounter++;
@@ -299,7 +330,6 @@ function moveLocationsOnClick(){
     map.setCenter({lat:  this.location[0], lng: this.location[1]+0.1});
     map.streetView.setPosition({lat:  this.location[0], lng: this.location[1]});
 }
-
 
 function selectMusic(){
     var index = $(event.target).index();
@@ -460,27 +490,29 @@ function onYouTubeIframeAPIReady() {
 }
 
 
+
+// MAKE SURE TO UNCOMMENT
+
 //Youtube API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.playVideo();
-    player.loadVideoById("ye8KvYKn9-0");
-}
+// function onPlayerReady(event) {
+//     event.target.playVideo();
+//     player.loadVideoById("ye8KvYKn9-0");
+// }
 
 
 //Start of Movie Database Info
 
-function loadMovieFromServer(){
+function loadMovieFromServer(title){
     var dataToSend = {
-        api_key: '9104cf02',
-        t: 'Goldfinger'
+        apikey: '9104cf02',
+        t: title
     };
 
-
     var ajaxOptions = {
-        method: 'get',
+        method: 'GET',
         dataType: 'json',
         data: dataToSend,
-        url: "http://www.omdbapi.com/?i=tt3896198&apikey=9104cf02",
+        url: "http://www.omdbapi.com/",
         success: functionToRunOnSuccess,
         error: functionToRunOnError
     };
@@ -490,11 +522,7 @@ function loadMovieFromServer(){
     }
 
     function functionToRunOnSuccess(movie){
-        console.log('movie: ', movie);
-        console.log(movie.Poster);
-        var posterImage = $('<img>').attr('src', movie.Poster);
-        // $('body').append(posterImage);
-        // proves that it works but not actually useful here.  Have to figure out where to append and when.
+        moviePoster = movie.Poster;
     }
 
     $.ajax(ajaxOptions);

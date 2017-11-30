@@ -30,6 +30,7 @@ html, body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     z-index: 3;
+    background-color: black;
 }
 
 #missionButton {
@@ -210,7 +211,7 @@ html, body {
 /* -------------- final modal -------------- */
 
 #finalModal {
-    /*display: none;*/
+    display: none;
     height: 75vh;
     width: 75vw;
     background-color: white;
@@ -246,6 +247,7 @@ html, body {
     height: 10vh;
     width: 20vw;
     border: 1px solid #f2f2f2;
+    cursor: crosshair;
 }
 
 .villainNames, .villainPics img {
@@ -268,8 +270,28 @@ html, body {
 
 /* -------------- avatars -------------- */
 
-#instructions {
+#mIntro, #moneyPenny, #q, #honeyRyder, #mCongrats {
     position: absolute;
     top: 50vh;
     left: 73vw;
 }
+
+/*#mIntro {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#moneyPenny {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#q {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#honeyRyder {*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*#mCongrats {*/
+    /*visibility: hidden;*/
+/*}*/
