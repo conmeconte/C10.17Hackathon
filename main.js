@@ -220,7 +220,7 @@ function createLocationButton(locations){
 
 /*on clicking a location button it centers the map to the lat & lng that the button's obj possess.*/
 function moveLocationsOnClick(){
-    map.setCenter({lat:  this.location[0], lng: this.location[1]});
+    map.setCenter({lat:  this.location[0], lng: this.location[1]+0.1});
     map.streetView.setPosition({lat:  this.location[0], lng: this.location[1]});
 }
 
@@ -332,15 +332,6 @@ function mapCreate() {
         });
     map.setStreetView(panorama);
     markerMaker();
-
-    // for(var marker_i=0; marker_i<locationObj.length; marker_i++) {
-    //     var eachLocation = locationObj[marker_i];
-    //     var marker = new google.maps.Marker({
-    //         position: {lat: eachLocation.location[0], lng: eachLocation.location[1]},
-    //         map: map,
-    //         title: eachLocation.name
-    //     });
-    // }
 
 }
 
