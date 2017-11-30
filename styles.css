@@ -13,6 +13,11 @@ html, body {
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'skyfall';
+    src: url('fonts/SkyFall Done.ttf');
+}
+
 
 #initialModal {
     position: absolute;
@@ -57,12 +62,13 @@ html, body {
     background-size:100% 100%;
     background-repeat: no-repeat;
     font-size:1vw;
-    color: #fff411;
+    color: black;
     font-weight: bolder;
+    font-family: 'skyfall';
 }
 .btn:hover{
-    color: black;
-    background-image: url("#");
+    color: white;
+    background-color:black;
     width: 15vw;
     height: 15vh;
     font-weight: 900;
@@ -71,6 +77,8 @@ html, body {
     -webkit-animation-name: greenPulse;
     -webkit-animation-duration: 1s;
     -webkit-animation-iteration-count: infinite;
+    font-family: 'skyfall';
+
 
 }
 @-webkit-keyframes greenPulse {
@@ -83,6 +91,8 @@ html, body {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+    font-family: 'skyfall';
+
 }
 .logo {
     height: 15vh;
@@ -138,7 +148,7 @@ html, body {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 #myModal{
-    font-family: 'spectre';
+    font-family: 'skyfall';
     font-size: 2vw;
     color: #241aff;
     position:absolute;
