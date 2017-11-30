@@ -116,8 +116,6 @@ function init(){
     createLocationButton(locationObj);
     $('#myBtn').click(function() {
         $('#midModal').css('display', "block");
-
-
     });
     $('.close').click(function(){
         $('#midModal').css('display','none');
@@ -127,14 +125,14 @@ function init(){
             $('#midModal').css('display','none');
         }
     };
-    $('.btn').click(function(){
-        nextLocation();
-        selectMusic();
-    });
+    // $('.btn').click(function(){
+    //     nextLocation();
+    //     selectMusic();
+    // });
     handleClicks();
     loadMovieFromServer();
     loadFinalModalItems();
-    
+
 
 };
 
@@ -274,6 +272,7 @@ function winningModal(){
         $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
         $('#missionButton').text('Play Again');
+        $('#finalModal').css('display','block');
 }
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
@@ -288,6 +287,8 @@ function createLocationButton(locations){
         buttonElem.text(place.name);
         buttonElem.css('background-image',"url("+place.flagSrc+")");
         buttonElem.on('click',moveLocationsOnClick.bind(place));
+        buttonElem.on('click',nextLocation.bind(place));
+        buttonElem.on('click',selectMusic.bind(place));
         $('.locationBtns').append(buttonElem);
     }
 
@@ -302,7 +303,8 @@ function moveLocationsOnClick(){
 
 
 function selectMusic(){
-    var index = $(event.target).index();
+    // var index = $(event.target).index();
+    var index= locationObj.indexOf(this);
     var musicSrc=locationObj[index].youTubeId;
     player.loadVideoById(musicSrc);
 }
