@@ -26,11 +26,10 @@ html, body {
     transform: translate(-20%, -20%);
     height: 100%;
     width: 100%;
-    background-image: url("img/bondbarrel.jpg");
+    background-image: url("img/bondbarrell.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     z-index: 3;
-    background-color: black;
 }
 #initModP{
     background-color: rgba(255,255,255,0.5);
@@ -300,3 +299,10 @@ html, body {
 /*#mCongrats {*/
     /*visibility: hidden;*/
 /*}*/
+
+.introVideo {
+    position: absolute;
+    top: 20vh;
+    left: 34vw;
+    z-index: 3;
+}

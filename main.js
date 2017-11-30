@@ -117,11 +117,11 @@ var villains = [
 
 var crimes = [
     {mission: "Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
-        movie: "videos/missionGoldenEye.mov"},
+        movie: "videos/missionGoldenEye.mp4"},
     {mission: "Someone is planning to contaminate a major water supply, killing everyone and then stealing 15 billion in gold bullion.",
-        movie: "videos/missionFortKnox.mov"},
+        movie: "videos/missionFortKnox.mp4"},
     {missio: "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world.",
-        movie: "videos/missionMI6.mov"}];
+        movie: "videos/missionMI6.mp4"}];
 
 function init(){
     missionBriefing(crimes);
