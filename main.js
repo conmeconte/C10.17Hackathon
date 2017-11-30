@@ -34,7 +34,8 @@ var wrongChoiceCounter=0;
 var gunSound= new Audio();
 gunSound.src= "sounds/gunsound2.mp3";
 
-var missionLocations = [];
+//poster variable
+var moviePoster;
 
 
 var locationObj=[
@@ -89,18 +90,21 @@ var locationObj=[
 var villains = [
     {name: "Auric Goldfinger",
     photo: "img/a_Goldfinger.jpg",
+    movie: "Goldfinger",
     trivia: ["Claims to be an expert pistol shot that never misses",
     "Is a Jeweller and Smuggler",
     "Has a manservant named Oddjob"]
     },
     {name: "Alec Trevelyan",
     photo: "img/Alec_Trevelyan.jpg",
+    movie: "GoldenEye",
     trivia: ["Formerly, agent 006 of MI6",
     "Also known as Janus",
     "007's partner on several missions"]
     },
     {name: "Raoul Silva",
     photo: "img/raoul_silva.png",
+    movie: "SkyFall",
     trivia: ["Former partner of Olivia Mansfield (M)",
     "Cyber-terrorist",
     "Captured, tortured, and imprisoned by the Chinese"]
@@ -135,7 +139,6 @@ function init(){
         selectMusic();
     });
     handleClicks();
-    loadMovieFromServer();
     loadFinalModalItems();
 };
 
@@ -150,8 +153,16 @@ function handleClicks(){
         gunSound.play();
         $("#initialModal").hide();
         pickMissionLocations(locationObj);
+        selectedVillain=randomizer(villains);
+        loadMovieFromServer(selectedVillain.movie);
         locationCounter=0;
         wrongChoiceCounter=0;
+    });
+    $('.villainNames').click(function(){
+        chooseMastermind(moviePoster);
+    });
+    $('.temporaryFinalModal').click(function(){
+        $('#finalModal').css('display','block');
     })
 }
 
@@ -202,17 +213,30 @@ function loadFinalModalItems() {
         });
         $('.villainNames.v'+i).text(villains[i].name);
     }
-//     $(".v0, .v1, .v2").on("click", chooseMastermind);
 }
 
 //Accuse a villain in final modal
-function chooseMastermind(){
+function chooseMastermind(image){ //pass in movie poster
+    var win = false;
+    var foundVillainIndex = $(event.target).index();
     var choice = $(event.target).text();
     if(choice === selectedVillain.name){
-        console.log("You win!");
+        $('.villainPics.v0').css({
+            'background-image': 'url('+villains[foundVillainIndex].photo+')',
+            'background-size': 'cover',
+            'background-repeat': 'no-repeat'
+        });
+        //Put video here.
+        $('.villainPics.v2').css({
+            'background-image': 'url('+image+')'
+        });
+        $('.villainNames.v0').text(villains[foundVillainIndex].name);
+        $('.villainNames.v1').hide();
+        $('.villainNames.v2').text(villains[foundVillainIndex].movie);
     } else {
-        console.log("You lose!");
+        //trigger loser modal.
     }
+
 }
 
 /*Adds selected locations trivia to the modals*/
@@ -478,17 +502,17 @@ function onYouTubeIframeAPIReady() {
 
 //Start of Movie Database Info
 
-function loadMovieFromServer(){
+function loadMovieFromServer(title){
     var dataToSend = {
-        api_key: '9104cf02',
-        t: 'Goldfinger'
+        apikey: '9104cf02',
+        t: title
     };
 
     var ajaxOptions = {
-        method: 'get',
+        method: 'GET',
         dataType: 'json',
         data: dataToSend,
-        url: "http://www.omdbapi.com/?i=tt3896198&apikey=9104cf02",
+        url: "http://www.omdbapi.com/",
         success: functionToRunOnSuccess,
         error: functionToRunOnError
     };
@@ -498,11 +522,7 @@ function loadMovieFromServer(){
     }
 
     function functionToRunOnSuccess(movie){
-        console.log('movie: ', movie);
-        console.log(movie.Poster);
-        var posterImage = $('<img>').attr('src', movie.Poster);
-        // $('body').append(posterImage);
-        // proves that it works but not actually useful here.  Have to figure out where to append and when.
+        moviePoster = movie.Poster;
     }
 
     $.ajax(ajaxOptions);
