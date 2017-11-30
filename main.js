@@ -25,6 +25,10 @@ var vidID;
 //villain variables
 var selectedVillain;
 
+//Used for location Guesses
+var locationCounter=0;
+var wrongChoiceCounter=0;
+
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
         "This is the largest city in Europe.",
@@ -178,8 +182,8 @@ function pickMissionLocations(array){  //This function returns three location ob
 
 
 /*Once begin button clicked calls the function to trigger first modal*/
-var locationCounter=0;
-var wrongChoiceCounter=0;
+/*takes in array of trivias and renders a random trivia from array to be posted on the modal */
+
 function triggerTrivia(){
     if(missionLocations.length>=locationCounter) {
         var pickTrivia=missionLocations[locationCounter].trivia;
@@ -193,10 +197,12 @@ function triggerTrivia(){
 /*Checks if player selected the correct location. If correct pops next trivia, if not informs player to retry*/
 function nextLocation(){
     if(missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
+        $('#myModalImg').attr("src", "img/jamesBond.png");
         locationCounter++;
         triggerTrivia();
     }else{
-        $('.modal-content p').text("He is not here, but hey feel free to look around");
+        $('.modal-content p').text("You fell into a trap!");
+        $('#myModalImg').attr("src", "img/blood-007.png");
         $('#myModal').css('display', 'block');
         wrongChoiceCounter++;
     }
