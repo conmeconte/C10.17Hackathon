@@ -96,8 +96,10 @@ function randomizer(arr){
     return random;
 }
 
-function villainTriviarandomizer(randomizer){
+function villainTriviaRandomizer(arr){
+        var chosenVillain = randomizer(arr);
 
+        return chosenVillain.trivia[Math.floor(Math.random() * chosenVillain.trivia.length)];
 
 }
 
