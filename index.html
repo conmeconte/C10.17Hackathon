@@ -16,52 +16,46 @@
 
 </head>
 
-    <body onload="welcomePlayer()">
+
+<body onload="welcomePlayer()">
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxO9JS83Rg55e9r39gzrd-kVXfINYGbvA&callback=mapCreate">
+    </script>
+    <img class="logo" src="img/wine.png">
+    <!--<div id="finalModal">-->
+    <!--</div>-->
+    <div id="player"></div><!--This has no size, but it is needed for youtube-->
+    <div id="pano">
+        <div id="map"></div>
+    </div>
+
+    <div class="locationBtns"></div>
+    <div class="currentHint">
+        <p>Hint</p>
+    </div>
 
 
-        <img class="logo" src="img/wine.png">
+    <button id="myBtn" class="btn-info">See Hint Again</button>
+    <img src="img/mPhone.PNG" id="m">
 
-        <div id = "initialModal">
-            <button id = "missionButton">Begin Mission</button>
+
+    <!-- Button just for Testing -->
+    <button id="myBtn">Open Modal</button>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+
         </div>
+    </div>
 
-        <!--<div id="finalModal">-->
-
-        <!--</div>-->
-
-        <div id="player"></div><!--This has no size, but it is needed for youtube-->
-
-        <div id="pano">
-            <div id="map"></div>
-        </div>
-
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxO9JS83Rg55e9r39gzrd-kVXfINYGbvA&callback=mapCreate">
-        </script>
+    <div id = "initialModal">
+        <button id = "missionButton">Begin Mission</button>
+    </div>
 
 
-<!-- Button just for Testing -->
-<button id="myBtn" class="btn-info">See Hint Again</button>
 
-        <div class="locationBtns"></div>
-
-
-        <img src="img/mPhone.PNG" id="m">
-
-        <!-- Button just for Testing -->
-        <button id="myBtn">Open Modal</button>
-
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p>Some text in the Modal..</p>
-            </div>
-        </div>
-
-
-<div class="currentHint">
-    <p>Hint</p>
-</div>
 
 </body>
 
