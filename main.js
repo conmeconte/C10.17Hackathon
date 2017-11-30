@@ -37,6 +37,10 @@ gunSound.src= "sounds/gunsound2.mp3";
 //poster variable
 var moviePoster;
 
+/*Mission Selection*/
+var mission;
+var missionVideo;
+
 
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
@@ -113,13 +117,14 @@ var villains = [
 
 var crimes = [
     {mission: "Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
-        movie: "videos/missionGoldenEye.mov"},
+        movie: "videos/missionGoldenEye.mp4"},
     {mission: "Someone is planning to contaminate a major water supply, killing everyone and then stealing 15 billion in gold bullion.",
-        movie: "videos/missionFortKnox.mov"},
+        movie: "videos/missionFortKnox.mp4"},
     {missio: "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world.",
-        movie: "videos/missionMI6.mov"}]
+        movie: "videos/missionMI6.mp4"}];
 
 function init(){
+    missionBriefing(crimes);
     createLocationButton(locationObj);
     $('#myBtn').click(function() {
         $('#midModal').css('display', "block");
@@ -142,16 +147,22 @@ function init(){
 
 function missionBriefing(arr){
     var random = Math.floor(Math.random()*arr.length);
-    var mission = crimes[random].mission;
-    var video = crimes[random].movie;
+    mission = crimes[random].mission;
+    missionVideo = crimes[random].movie;
+    $('#initialModal p').text(mission);
+    $('#videoSrc').attr("src", missionVideo);
+
+
+
+
 }
 
 function handleClicks(){
     $('#missionButton').click(function(){
         gunSound.play();
         $("#initialModal").hide();
-        pickMissionLocations(locationObj);
         selectedVillain=randomizer(villains);
+        pickMissionLocations(locationObj);
         loadMovieFromServer(selectedVillain.movie);
         locationCounter=0;
         wrongChoiceCounter=0;
@@ -166,7 +177,7 @@ function handleClicks(){
 
 function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
     var random = arr[Math.floor(Math.random() * arr.length)];
-    selectedVillain= random;
+    return random;
 }
 
 function indexRandomizer(arr){  //Finds random index in array.
@@ -175,7 +186,7 @@ function indexRandomizer(arr){  //Finds random index in array.
 }
 
 function villainTriviaRandomizer(){
-    randomizer(villains);
+    // randomizer(villains);
     return selectedVillain.trivia[Math.floor(Math.random() * selectedVillain.trivia.length)];
 }
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
