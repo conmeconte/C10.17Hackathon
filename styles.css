@@ -6,16 +6,34 @@ html, body {
     overflow: hidden;
 }
 
+@font-face {
+    font-family: 'spectre';
+    src: url('fonts/spectre_font.otf');
+    font-style: normal;
+    font-weight: bold;
+}
+
 
 #initialModal{
     position: absolute;
     top: 20%;
     left: 20%;
     transform: translate(-20%, -20%);
-    height: 80%;
-    width: 80%;
-    background-color: white;
-    z-index: 50;
+    height: 100%;
+    width: 100%;
+    background-image: url("img/judi_m2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 3;
+}
+
+#missionButton{
+    font-family: "spectre", sans-serif;
+    position: relative;
+    top: 65%;
+    left: 10%;
+    background-color: #FFD700;
+    font-size: 50px;
 }
 
 #map {
