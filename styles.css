@@ -123,7 +123,7 @@ html, body {
     border: 1px solid #888;
     width: 50%;
     top:50%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 /* The Close Button */
