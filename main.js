@@ -125,7 +125,7 @@ var crimes = [
         movie: "videos/missionMI6.mp4"}];
 
 function init(){
-    missionBriefing(crimes);
+    // missionBriefing(crimes);
     createLocationButton(locationObj);
     $('#myBtn').click(function() {
         $('#midModal').css('display', "block");

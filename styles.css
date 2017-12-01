@@ -31,6 +31,30 @@ html, body {
     background-size: 100% 100%;
     z-index: 3;
 }
+
+.rulesSection{
+    height: 60vh;
+    width: 23vw;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: inline-block;
+    position: absolute;
+    top: 23%;
+    left: 6%;
+}
+
+.rulesSection p{
+    font-size: 3vmin;
+    font-weight: bold;
+    font-family: "sans-serif";
+    margin: 10%;
+}
+.bannerImg{
+    height: 20vh;
+    width: 39vw;
+    position: absolute;
+    left: 42%;
+}
 #initModP{
     background-color: rgba(255,255,255,0.5);
     position: relative;
@@ -39,11 +63,12 @@ html, body {
 }
 #missionButton {
     font-family: "spectre", sans-serif;
-    position: relative;
-    top: 44vh;
-    left: 9vw;
+    position: absolute;
+    bottom: 13vh;
+    right: 4vw;
     background-color: #FFD700;
     font-size: 8vh;
+    display: inline-block;
 }
 
 .gameInfo{
@@ -133,17 +158,15 @@ html, body {
 .currentHint{
     float: right;
     width: 20%;
-    height: 20%;
+    height: 67%;
     position: relative;
-    top: 146px;
-    margin-right:4%;
-    padding:1px;
+    top: 85px;
+    margin-right: 4%;
+    padding: 1px;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     color: white;
     font-family: 'spectre';
     overflow: auto;
-
-
 }
 /*.currentHint>p{*/
     /*position: absolute;*/
