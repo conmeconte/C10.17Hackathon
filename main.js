@@ -295,7 +295,8 @@ function nextLocation(){
 
     }
     else{
-        $('.modal-content p').text("You fell into a trap!");
+        $('#midModalP').text("You fell into a trap!");
+        $('#midModalP2').text("");
         $('#midModalImg').attr("src", "img/blood-007.png");
         $('#midModal').css('display', 'block');
         wrongChoiceCounter++;
@@ -313,7 +314,6 @@ function losingModal(){
         $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
         $('#missionButton').text('Try Again');
-
     } else if (win===1){
         $('#finalModal').css('display','none');
         $('#initialModal p').text("You Lose");
