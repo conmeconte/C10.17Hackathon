@@ -21,7 +21,6 @@
     </script>
 
     <img class="logo" src="img/wine.png">
-    <button class="temporaryFinalModal">Final Modal</button>
 
     <div id="player"></div><!--This has no size, but it is needed for youtube-->
 
@@ -38,46 +37,34 @@
         <p id="villainTr"></p>
     </div>
 
-    <button id="myBtn" class="btn-info">See Hint Again</button>
 
-    <!-- Button just for Testing -->
-    <button id="myBtn">Open Modal</button>
 
-    <!--<div id="midModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p id='midModalP'></p>
-            <p id='midModalP2'></p>
-        </div>
     <div id="missionVideos">
-        <video width="320" height="236">
-            <source id="videoSrc" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>-->
+
+    </div>
 
     <div id = "initialModal">
+        <p id="initModP"></p>
 
-        <!--<h2>Crime</h2>
-        <p id="initModP"></p>-->
-        <img src="img/wine.png" class = "bannerImg" alt="WINE">
+        <img src="img/wine.png" class = "bannerImg" id="initialModalImg" alt="WINE">
         <div class = "rulesSection">
             <p>
-                Game Rules: Fly around the world to stop a villain before he wreaks havoc. You have only have time to fly five places. Each clue will lead you to a city that the culprit has been. You will also get a clue about the villain's identity. If you can get to the right city and name the right villain, you win! If not, it will be peril for us all.
+                Game Rules: Fly around the world to stop a villain before he wreaks havoc. You only have time to fly to five places. Each clue will lead you to a city that the culprit has been. You will also get a clue about the villain's identity. If you can get to the right city and name the right villain, you win! If not, it will be peril for us all.
             </p>
         </div>
+        <img id="connery" src="img/bond_conner.png">
         <button id = "missionButton">Begin Mission</button>
     </div>
 
     <div id="finalModal">
-        <span class="closeModal">&times;</span>
+        <!--<span class="closeModal">&times;</span>-->
         <h1>Who committed the crime?</h1>
         <div class="suspects">
 
             <div class="villainPics v0"></div>
             <div class="villainPics v1"></div>
             <video class="success" width="40vh" height="20vw" controls>
-                <source src="videos/congrats.mov" type="video/mov">
+                <source src="videos/congrats.mp3" type="video/mov">
                 Your browser does not support video.
             </video>
             <div class="villainPics v2"></div>
