@@ -86,7 +86,7 @@ var villains = [
     photo: "img/a_Goldfinger.jpg",
     movie: "Goldfinger",
     trivia: ["Claims to be an expert pistol shot that never misses",
-    "Is a Jeweller and Smuggler",
+    "Jeweller and Smuggler",
     "Has a manservant named Oddjob"]
     },
     {name: "Alec Trevelyan",
@@ -280,7 +280,7 @@ function nextLocation(){
 
     }
     else{
-        $('#midModalP').text("You fell into a trap!");
+        $('#midModal').text("You fell into a trap!");
         $('#midModalP2').text("");
         $('#midModalImg').attr("src", "img/blood-007.png");
         $('#midModal').css('display', 'block');
