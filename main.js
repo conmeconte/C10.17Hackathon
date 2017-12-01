@@ -138,8 +138,18 @@ function missionBriefing(arr){
     var random = Math.floor(Math.random()*arr.length);
     mission = crimes[random].mission;
     missionVideo = crimes[random].movie;
-    // $('#initialModal p').text(mission);
-    $('#videoSrc').attr("src", missionVideo);
+
+    // $('#videoTag').attr("autoplay");
+    var videoTag = $("<video>").attr({
+        class: "missionVideo",
+        width: "320",
+        height: "236",
+        src: missionVideo
+    })
+    $("#missionVideos").append(videoTag);
+    // $('#videoSrc').attr("src", missionVideo);
+    // $('#videoTag')[0].play();
+    videoTag[0].play();
 }
 
 function handleClicks(){
