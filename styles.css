@@ -65,7 +65,7 @@ html, body {
 #missionButton {
     font-family: "spectre", sans-serif;
     position: absolute;
-    bottom: 13vh;
+    bottom: 10vh;
     right: 4vw;
     background-color: #FFD700;
     font-size: 8vh;
@@ -341,4 +341,12 @@ html, body {
     position: absolute;
     top: 5%;
     right: 5%;
+}
+
+#connery {
+    position: absolute;
+    height: 50vh;
+    top: 55%;
+    left: 53%;
+    transform: translate(-50%,-50%);
 }

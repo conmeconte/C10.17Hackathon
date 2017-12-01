@@ -528,8 +528,6 @@ function onYouTubeIframeAPIReady() {
 
 
 
-// MAKE SURE TO UNCOMMENT
-
 //Youtube API will call this function when the video player is ready.
 function onPlayerReady(event) {
     event.target.playVideo();
