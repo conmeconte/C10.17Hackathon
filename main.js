@@ -258,9 +258,10 @@ function triggerTrivia(villainTriv){
         var randomIndex=Math.floor(Math.random() * pickTrivia.length);
         $('#midModalP').text(pickTrivia[randomIndex]);
         $('#midModalP2').text(villainTriv);
-        $('.currentHint p').text(pickTrivia[randomIndex]);
+        $('#hint').text(pickTrivia[randomIndex]);
         $('#villainTr').text(villainTriv);
         $('#midModal').css('display', 'block');
+        $('#wrongTurn').text('');
     }
 }
 
@@ -278,7 +279,7 @@ function nextLocation(){
     }else if(locationCounter>=2){
         winningModal();
     } else{
-        // $('#midModalP').text("You fell into a trap!");
+        $('#wrongTurn').text("You fell into a trap!");
         // $('#midModalP2').text("");
         // $('#midModalImg').attr("src", "img/blood-007.png");
         // $('#midModal').css('display', 'block');
@@ -319,6 +320,7 @@ function winningModal(){
         $('#initialModal p').text("You Did it 007!").css('font-family', 'Skyfall');
         $("#initialModal").css("background-image", 'none');
         $('#initialModalImg').attr("src", "none");
+        $('#connery').attr('src','none');
         document.querySelector("#initialModal").style.backgroundImage = "url('img/final.gif')";
         // $("#initialModal").css("background-image","url(img/final.gif)");
         // $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
