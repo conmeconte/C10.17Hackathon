@@ -82,7 +82,9 @@ html, body {
     left: 2vw;
     opacity: 0.3;
 }
-
+#wrongTurn{
+    color: red;
+}
 #map {
     float: left;
     height: 30%;

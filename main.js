@@ -268,9 +268,10 @@ function triggerTrivia(villainTriv){
         var randomIndex=Math.floor(Math.random() * pickTrivia.length);
         $('#midModalP').text(pickTrivia[randomIndex]);
         $('#midModalP2').text(villainTriv);
-        $('.currentHint p').text(pickTrivia[randomIndex]);
+        $('#hint').text(pickTrivia[randomIndex]);
         $('#villainTr').text(villainTriv);
         $('#midModal').css('display', 'block');
+        $('#wrongTurn').text('');
     }
 }
 
@@ -288,7 +289,7 @@ function nextLocation(){
     }else if(locationCounter>=2){
         winningModal();
     } else{
-        // $('#midModalP').text("You fell into a trap!");
+        $('#wrongTurn').text("You fell into a trap!");
         // $('#midModalP2').text("");
         // $('#midModalImg').attr("src", "img/blood-007.png");
         // $('#midModal').css('display', 'block');
