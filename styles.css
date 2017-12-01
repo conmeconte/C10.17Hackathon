@@ -33,7 +33,7 @@ html, body {
 }
 
 .rulesSection{
-    height: 60vh;
+    height: auto;
     width: 23vw;
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
@@ -59,12 +59,13 @@ html, body {
     background-color: rgba(255,255,255,0.5);
     position: relative;
     font-size: 3vw;
-    height: 20%;
+    height: auto;
+    text-align: center;
 }
 #missionButton {
     font-family: "spectre", sans-serif;
     position: absolute;
-    bottom: 13vh;
+    bottom: 10vh;
     right: 4vw;
     background-color: #FFD700;
     font-size: 8vh;
@@ -160,7 +161,7 @@ html, body {
     width: 20%;
     height: 67%;
     position: relative;
-    top: 85px;
+    top: 15vh;
     margin-right: 4%;
     padding: 1px;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
@@ -249,6 +250,7 @@ html, body {
     border-radius: 25px;
     z-index: 200;
     display: none;
+    box-shadow: 0px 1px 20px 20px #888888;
 }
 
 #finalModal h1 {
@@ -339,4 +341,12 @@ html, body {
     position: absolute;
     top: 5%;
     right: 5%;
+}
+
+#connery {
+    position: absolute;
+    height: 50vh;
+    top: 55%;
+    left: 53%;
+    transform: translate(-50%,-50%);
 }
