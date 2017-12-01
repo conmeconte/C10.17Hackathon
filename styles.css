@@ -30,9 +30,13 @@ html, body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     z-index: 3;
-    background-color: black;
 }
-
+#initModP{
+    background-color: rgba(255,255,255,0.5);
+    position: relative;
+    font-size: 3vw;
+    height: 20%;
+}
 #missionButton {
     font-family: "spectre", sans-serif;
     position: relative;
@@ -270,10 +274,11 @@ html, body {
 
 /* -------------- avatars -------------- */
 
-#mIntro, #moneyPenny, #q, #honeyRyder, #mCongrats {
+#missionVideos {
     position: absolute;
-    top: 50vh;
-    left: 73vw;
+    top: 65vh;
+    left: 74.5vw;
+    border: 5px solid white;
 }
 
 /*#mIntro {*/
@@ -295,3 +300,20 @@ html, body {
 /*#mCongrats {*/
     /*visibility: hidden;*/
 /*}*/
+
+/*}*/
+
+
+.success {
+    display: none;
+}
+
+.closeModal {
+    color: black;
+    float: right;
+    font-size: 4vmin;
+    font-weight: bold;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}

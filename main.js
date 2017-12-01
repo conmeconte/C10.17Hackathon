@@ -7,11 +7,12 @@ $(document).ready(init);
 //     pickVillain: "You have caught up to the culprit! Based on the clues you received, who do you think was the mastermind?",
 //     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
 // }];
+//
+// function welcomePlayer(){
+//     responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
+// }
 
-function welcomePlayer(){
-    responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
-}
-
+var win = 0;
 //map variables
 var map;
 var fenway;
@@ -36,6 +37,10 @@ gunSound.src= "sounds/gunsound2.mp3";
 
 //poster variable
 var moviePoster;
+
+/*Mission Selection*/
+var mission;
+var missionVideo;
 
 
 var locationObj=[
@@ -113,13 +118,14 @@ var villains = [
 
 var crimes = [
     {mission: "Someone has stolen the GoldenEye satellite and intends to erase the Bank of England's financial records, destroying the British economy in the process.",
-        movie: "videos/missionGoldenEye.mov"},
+        movie: "videos/missionGoldenEye.mp4"},
     {mission: "Someone is planning to contaminate a major water supply, killing everyone and then stealing 15 billion in gold bullion.",
-        movie: "videos/missionFortKnox.mov"},
+        movie: "videos/missionFortKnox.mp4"},
     {missio: "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world.",
-        movie: "videos/missionMI6.mov"}]
+        movie: "videos/missionMI6.mp4"}];
 
 function init(){
+    missionBriefing(crimes);
     createLocationButton(locationObj);
     $('#myBtn').click(function() {
         $('#midModal').css('display', "block");
@@ -142,31 +148,41 @@ function init(){
 
 function missionBriefing(arr){
     var random = Math.floor(Math.random()*arr.length);
-    var mission = crimes[random].mission;
-    var video = crimes[random].movie;
+    mission = crimes[random].mission;
+    missionVideo = crimes[random].movie;
+    $('#initialModal p').text(mission);
+    $('#videoSrc').attr("src", missionVideo);
+
+
+
+
 }
 
 function handleClicks(){
     $('#missionButton').click(function(){
         gunSound.play();
         $("#initialModal").hide();
-        pickMissionLocations(locationObj);
         selectedVillain=randomizer(villains);
+        pickMissionLocations(locationObj);
         loadMovieFromServer(selectedVillain.movie);
         locationCounter=0;
         wrongChoiceCounter=0;
+        win=0;
     });
     $('.villainNames').click(function(){
         chooseMastermind(moviePoster);
     });
     $('.temporaryFinalModal').click(function(){
         $('#finalModal').css('display','block');
-    })
+    });
+    $('.closeModal').click(function(){
+        $('#finalModal').css('display','none');
+    });
 }
 
 function randomizer(arr){ //pass in villains array to generate a random villains object from villains array.
     var random = arr[Math.floor(Math.random() * arr.length)];
-    selectedVillain= random;
+    return random;
 }
 
 function indexRandomizer(arr){  //Finds random index in array.
@@ -175,7 +191,7 @@ function indexRandomizer(arr){  //Finds random index in array.
 }
 
 function villainTriviaRandomizer(){
-    randomizer(villains);
+    // randomizer(villains);
     return selectedVillain.trivia[Math.floor(Math.random() * selectedVillain.trivia.length)];
 }
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
@@ -214,25 +230,29 @@ function loadFinalModalItems() {
 }
 
 //Accuse a villain in final modal
-function chooseMastermind(image){ //pass in movie poster
-    var win = false;
+function chooseMastermind(poster){ //pass in movie poster
     var foundVillainIndex = $(event.target).index();
     var choice = $(event.target).text();
     if(choice === selectedVillain.name){
+        win = 2;
         $('.villainPics.v0').css({
             'background-image': 'url('+villains[foundVillainIndex].photo+')',
             'background-size': 'cover',
             'background-repeat': 'no-repeat'
         });
-        //Put video here.
+
+        $('.villainPics.v1').hide();
+        // $('.success').css('display', 'block'); This can be changed to video in later version.
         $('.villainPics.v2').css({
-            'background-image': 'url('+image+')'
+            'background-image': 'url('+poster+')'
         });
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();
         $('.villainNames.v2').text(villains[foundVillainIndex].movie);
+        setTimeout(5000, winningModal);
     } else {
-        //trigger loser modal.
+        win = 1;
+        losingModal();
     }
 
 }
@@ -275,7 +295,8 @@ function nextLocation(){
 
     }
     else{
-        $('.modal-content p').text("You fell into a trap!");
+        $('#midModalP').text("You fell into a trap!");
+        $('#midModalP2').text("");
         $('#midModalImg').attr("src", "img/blood-007.png");
         $('#midModal').css('display', 'block');
         wrongChoiceCounter++;
@@ -288,17 +309,23 @@ function nextLocation(){
 /*If player clicks wrong choice more than 5 times this function trigger*/
 
 function losingModal(){
-    if(locationCounter+wrongChoiceCounter>=5){
+    if(locationCounter+wrongChoiceCounter>=5 && win===0){
         $('#initialModal p').text("You Lose");
         $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
         $('#missionButton').text('Try Again');
-
+    } else if (win===1){
+        $('#finalModal').css('display','none');
+        $('#initialModal p').text("You Lose");
+        $('#initialModalImg').attr("src", "img/lose.gif").height("15vh").width("20vw");
+        $('#initialModal').css('display', 'block');
+        $('#missionButton').text('Try Again');
     }
 }
 
 
 function winningModal(){
+        $('#finalModal').css('display', 'none');
         $('#initialModal p').text("You Got the Villain");
         $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
