@@ -145,17 +145,12 @@ function init(){
     handleClicks();
     loadFinalModalItems();
 };
-
 function missionBriefing(arr){
     var random = Math.floor(Math.random()*arr.length);
     mission = crimes[random].mission;
     missionVideo = crimes[random].movie;
     $('#initialModal p').text(mission);
     $('#videoSrc').attr("src", missionVideo);
-
-
-
-
 }
 
 function handleClicks(){
@@ -249,7 +244,7 @@ function chooseMastermind(poster){ //pass in movie poster
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();
         $('.villainNames.v2').text(villains[foundVillainIndex].movie);
-        setTimeout(5000, winningModal);
+        setTimeout(winningModal,5000);
     } else {
         win = 1;
         losingModal();
@@ -323,14 +318,21 @@ function losingModal(){
     }
 }
 
-
 function winningModal(){
+    if(win===2){
         $('#finalModal').css('display', 'none');
-        $('#initialModal p').text("You Got the Villain");
-        $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
+
+    } else {
+        $('#initialModal h2').text('');
+        $('#initialModal p').text("You Did it 007!").css('font-family', 'Skyfall');
+        $("#initialModal").css("background-image", 'none');
+        document.querySelector("#initialModal").style.backgroundImage = "url('img/final.gif')";
+        // $("#initialModal").css("background-image","url(img/final.gif)");
+        // $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
         $('#missionButton').text('Play Again');
-        $('#finalModal').css('display','block');
+        $('#finalModal').css('display', 'block');
+    }
 }
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
@@ -523,10 +525,10 @@ function onYouTubeIframeAPIReady() {
 // MAKE SURE TO UNCOMMENT
 
 //Youtube API will call this function when the video player is ready.
-// function onPlayerReady(event) {
-//     event.target.playVideo();
-//     player.loadVideoById("ye8KvYKn9-0");
-// }
+function onPlayerReady(event) {
+    event.target.playVideo();
+    player.loadVideoById("ye8KvYKn9-0");
+}
 
 
 //Start of Movie Database Info
