@@ -280,25 +280,22 @@ function nextLocation(){
 
     if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
         // $('#midModalImg').attr("src", "img/jamesBond.png");
-
-        var videoTag = $("<video>").attr({
-            class: "missionVideo",
-            width: "320",
-            height: "236",
-            src: "video/rightCity.mp4"
-        })
-        $("#missionVideos").append(videoTag);
-        videoTag[0].play();
+        // var rightCityVideo = $(".missionVideo").attr("src", "videos/rightCity.mp4");
+        // rightCityVideo[0].play();
 
         locationCounter++;
         triggerTrivia();
     }else if(locationCounter>=2){
         winningModal();
     } else{
-        $('#midModalP').text("You fell into a trap!");
-        $('#midModalP2').text("");
-        $('#midModalImg').attr("src", "img/blood-007.png");
-        $('#midModal').css('display', 'block');
+        // $('#midModalP').text("You fell into a trap!");
+        // $('#midModalP2').text("");
+        // $('#midModalImg').attr("src", "img/blood-007.png");
+        // $('#midModal').css('display', 'block');
+
+        // var wrongCityVideo = $(".missionVideo").attr("src", "videos/wrongCity.mp4");
+        // wrongCityVideo[0].play();
+
         wrongChoiceCounter++;
         losingModal();
         gunSound.play();
