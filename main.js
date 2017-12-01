@@ -31,7 +31,6 @@ var moviePoster;
 var mission;
 var missionVideo;
 
-
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
         "This is the largest city in Europe.",
@@ -138,8 +137,14 @@ function missionBriefing(arr){
     var random = Math.floor(Math.random()*arr.length);
     mission = crimes[random].mission;
     missionVideo = crimes[random].movie;
-    // $('#initialModal p').text(mission);
-    $('#videoSrc').attr("src", missionVideo);
+    var videoTag = $("<video>").attr({
+        class: "missionVideo",
+        width: "320",
+        height: "236",
+        src: missionVideo
+    })
+    $("#missionVideos").append(videoTag);
+    videoTag[0].play();
 }
 
 function handleClicks(){
@@ -272,14 +277,22 @@ function triggerTrivia(villainTriv){
 function nextLocation(){
 
     if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
-        $('#midModalImg').attr("src", "img/jamesBond.png");
+        // $('#midModalImg').attr("src", "img/jamesBond.png");
+
+        var videoTag = $("<video>").attr({
+            class: "missionVideo",
+            width: "320",
+            height: "236",
+            src: "video/rightCity.mp4"
+        })
+        $("#missionVideos").append(videoTag);
+        videoTag[0].play();
+
         locationCounter++;
         triggerTrivia();
     }else if(locationCounter>=2){
         winningModal();
-
-    }
-    else{
+    } else{
         $('#midModalP').text("You fell into a trap!");
         $('#midModalP2').text("");
         $('#midModalImg').attr("src", "img/blood-007.png");
