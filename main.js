@@ -1,17 +1,6 @@
 
 $(document).ready(init);
 
-// var missionInstructions = [{
-//     gameStart: "Good morning, James. " + crimes[0] + ". Please find out who it is and stop him!",
-//     nextLocation: "You just missed him! He is on his way to " + locationObj[0].trivia[0],
-//     pickVillain: "You have caught up to the culprit! Based on the clues you received, who do you think was the mastermind?",
-//     congratulations: "Congratulations, double oh seven! You captured " + villains[0].name + "and prevented a catastrophe."
-// }];
-//
-// function welcomePlayer(){
-//     responsiveVoice.speak("Hello double oh seven. Thank you for coming. We have intercepted a message with information that could start the next world war. Please find out who is behind this and stop them!");
-// }
-
 var win = 0;
 //map variables
 var map;
@@ -125,7 +114,6 @@ var crimes = [
         movie: "videos/missionMI6.mp4"}];
 
 function init(){
-    missionBriefing(crimes);
     createLocationButton(locationObj);
     $('#myBtn').click(function() {
         $('#midModal').css('display', "block");
@@ -149,7 +137,7 @@ function missionBriefing(arr){
     var random = Math.floor(Math.random()*arr.length);
     mission = crimes[random].mission;
     missionVideo = crimes[random].movie;
-    $('#initialModal p').text(mission);
+    // $('#initialModal p').text(mission);
     $('#videoSrc').attr("src", missionVideo);
 }
 
@@ -157,6 +145,7 @@ function handleClicks(){
     $('#missionButton').click(function(){
         gunSound.play();
         $("#initialModal").hide();
+        missionBriefing(crimes);
         selectedVillain=randomizer(villains);
         pickMissionLocations(locationObj);
         loadMovieFromServer(selectedVillain.movie);
@@ -326,6 +315,7 @@ function winningModal(){
         $('#initialModal h2').text('');
         $('#initialModal p').text("You Did it 007!").css('font-family', 'Skyfall');
         $("#initialModal").css("background-image", 'none');
+        $('#initialModalImg').attr("src", "none");
         document.querySelector("#initialModal").style.backgroundImage = "url('img/final.gif')";
         // $("#initialModal").css("background-image","url(img/final.gif)");
         // $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
