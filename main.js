@@ -323,6 +323,7 @@ function winningModal(){
         $('#initialModal p').text("You Did it 007!").css('font-family', 'Skyfall');
         $("#initialModal").css("background-image", 'none');
         $('#initialModalImg').attr("src", "none");
+        $('#connery').attr('src','none');
         document.querySelector("#initialModal").style.backgroundImage = "url('img/final.gif')";
         // $("#initialModal").css("background-image","url(img/final.gif)");
         // $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
