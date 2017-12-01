@@ -147,9 +147,14 @@ function missionBriefing(arr){
         width: "320",
         height: "236",
         src: missionVideo
-    })
-    $("#missionVideos").append(videoTag);
-    videoTag[0].play();
+    });
+    if($('#missionButton').text()==="Begin Mission") {
+        $("#missionVideos").append(videoTag);
+        videoTag[0].play();
+    }else{
+        var replayVid=$(".missionVideo").attr("src",missionVideo);
+        replayVid[0].play();
+    }
 }
 
 function handleClicks(){
@@ -163,7 +168,10 @@ function handleClicks(){
         locationCounter=0;
         wrongChoiceCounter=0;
         win=0;
-        player.pauseVideo();
+        if($('missionButton').text()=="Begin Mission"){
+            player.pauseVideo();
+
+        }
     });
     $('.villainNames').click(function(){
         chooseMastermind(moviePoster);
@@ -273,29 +281,24 @@ function triggerTrivia(villainTriv){
 function nextLocation(){
 
     if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
-        // $('#midModalImg').attr("src", "img/jamesBond.png");
-        // var rightCityVideo = $(".missionVideo").attr("src", "videos/rightCity.mp4");
-        // rightCityVideo[0].play();
-
+        var rightCityVideo = $(".missionVideo").attr("src", "videos/rightCity.mp4");
+        rightCityVideo[0].play();
         locationCounter++;
-        triggerTrivia();
+        triggerTrivia(villainTriviaRandomizer());
+
     }else if(locationCounter>=2){
         winningModal();
     } else{
         $('#wrongTurn').text("You fell into a trap!");
-        // $('#midModalP2').text("");
-        // $('#midModalImg').attr("src", "img/blood-007.png");
-        // $('#midModal').css('display', 'block');
-
-        // var wrongCityVideo = $(".missionVideo").attr("src", "videos/wrongCity.mp4");
-        // wrongCityVideo[0].play();
-
+        var wrongCityVideo = $(".missionVideo").attr("src", "videos/wrongCity.mp4");
+        wrongCityVideo[0].play();
         wrongChoiceCounter++;
         losingModal();
         gunSound.play();
     }
 
 }
+
 
 /*If player clicks wrong choice more than 5 times this function trigger*/
 
