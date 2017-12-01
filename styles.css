@@ -168,7 +168,7 @@ html, body {
     padding: 1px;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
     color: white;
-    font-family: 'spectre';
+    font-family: 'spectre', sans-serif;
     overflow: auto;
 }
 /*.currentHint>p{*/

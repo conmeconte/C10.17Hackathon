@@ -241,7 +241,7 @@ function chooseMastermind(poster){ //pass in movie poster
         });
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();
-        $('.villainNames.v2').text("You'll find this villain in " +villains[foundVillainIndex].movie);
+        $('.villainNames.v2').text("You'll find this villain in " +villains[foundVillainIndex].movie).css('text-size','2vh');
         setTimeout(winningModal,5000);
     } else {
         win = 1;
