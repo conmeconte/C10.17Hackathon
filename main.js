@@ -253,6 +253,8 @@ function chooseMastermind(poster){ //pass in movie poster
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();
         $('.villainNames.v2').text(villains[foundVillainIndex].movie);
+
+        $('#finalModal h1').text("Final Mission Compete!");
         setTimeout(winningModal,5000);
     } else {
         win = 1;
