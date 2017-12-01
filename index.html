@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="main.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The World Is Not Enough</title>
+</head>
+
+<!--<body onload="welcomePlayer()">-->
+<body>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxO9JS83Rg55e9r39gzrd-kVXfINYGbvA&callback=mapCreate">
+    </script>
+
+    <img class="logo" src="img/wine.png">
+
+    <div id="player"></div><!--This has no size, but it is needed for youtube-->
+
+    <div id="pano">
+        <div id="map"></div>
+    </div>
+
+    <div class="locationBtns"></div>
+
+    <div class="currentHint">
+        <h1 id="wrongTurn"></h1>
+        <h3>Next Location Hint</h3>
+        <p id="hint">Hint</p>
+        <h3>Villain Hint</h3>
+        <p id="villainTr"></p>
+    </div>
+
+
+
+    <div id="missionVideos">
+
+    </div>
+
+    <div id = "initialModal">
+        <p id="initModP"></p>
+
+        <img src="img/wine.png" class = "bannerImg" id="initialModalImg" alt="WINE">
+        <div class = "rulesSection">
+            <p>
+                Game Rules: Fly around the world to stop a villain before he wreaks havoc. You only have time to fly to five places. Each clue will lead you to a city that the culprit has been. You will also get a clue about the villain's identity. If you can get to the right city and name the right villain, you win! If not, it will be peril for us all.
+            </p>
+        </div>
+        <img id="connery" src="img/bond_conner.png">
+        <button id = "missionButton">Begin Mission</button>
+    </div>
+
+    <div id="finalModal">
+        <!--<span class="closeModal">&times;</span>-->
+        <h1>Who committed the crime?</h1>
+        <div class="suspects">
+
+            <div class="villainPics v0"></div>
+            <div class="villainPics v1"></div>
+            <video class="success" width="40vh" height="20vw" controls>
+                <source src="videos/congrats.mp3" type="video/mov">
+                Your browser does not support video.
+            </video>
+            <div class="villainPics v2"></div>
+
+        </div>
+        <br>
+        <div class="suspects">
+            <div class="villainNames v0"></div>
+            <div class="villainNames v1"></div>
+            <div class="villainNames v2"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
