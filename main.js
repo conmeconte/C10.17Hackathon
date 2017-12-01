@@ -85,7 +85,7 @@ var villains = [
     photo: "img/a_Goldfinger.jpg",
     movie: "Goldfinger",
     trivia: ["Claims to be an expert pistol shot that never misses",
-    "Is a Jeweller and Smuggler",
+    "Jeweller and Smuggler",
     "Has a manservant named Oddjob"]
     },
     {name: "Alec Trevelyan",
