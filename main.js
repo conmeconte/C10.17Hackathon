@@ -129,10 +129,7 @@ function init(){
             $('#midModal').css('display','none');
         }
     };
-    // $('.btn').click(function(){
-    //     nextLocation();
-    //     selectMusic();
-    // });
+
     handleClicks();
     loadFinalModalItems();
 };
@@ -147,7 +144,7 @@ function missionBriefing(arr){
         width: "320",
         height: "236",
         src: missionVideo
-    })
+    });
     $("#missionVideos").append(videoTag);
     videoTag[0].play();
 }
@@ -187,7 +184,6 @@ function indexRandomizer(arr){  //Finds random index in array.
 }
 
 function villainTriviaRandomizer(){
-    // randomizer(villains);
     return selectedVillain.trivia[Math.floor(Math.random() * selectedVillain.trivia.length)];
 }
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
@@ -231,6 +227,7 @@ function chooseMastermind(poster){ //pass in movie poster
     var choice = $(event.target).text();
     if(choice === selectedVillain.name){
         win = 2;
+        $('#finalModal h1').text('Correct!');
         $('.villainPics.v0').css({
             'background-image': 'url('+villains[foundVillainIndex].photo+')',
             'background-size': 'cover',
@@ -238,13 +235,13 @@ function chooseMastermind(poster){ //pass in movie poster
         });
 
         $('.villainPics.v1').hide();
-        // $('.success').css('display', 'block'); This can be changed to video in later version.
+
         $('.villainPics.v2').css({
             'background-image': 'url('+poster+')'
         });
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();
-        $('.villainNames.v2').text(villains[foundVillainIndex].movie);
+        $('.villainNames.v2').text("You'll find this villain in " +villains[foundVillainIndex].movie);
         setTimeout(winningModal,5000);
     } else {
         win = 1;

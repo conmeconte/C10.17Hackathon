@@ -106,7 +106,7 @@ html, body {
     font-size:1vw;
     color: black;
     font-weight: bolder;
-    font-family: 'skyfall';
+    font-family: 'skyfall', sans-serif;
 }
 .btn:hover{
     color: white;
