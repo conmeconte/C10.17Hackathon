@@ -31,6 +31,7 @@ var moviePoster;
 var mission;
 var missionVideo;
 
+//an array full of objects with all of the needed information for each city.  Associated button added later.
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
         "This is the largest city in Europe.",
@@ -80,6 +81,7 @@ var locationObj=[
         "Cricket and rugby are the most popular sports here."]}
 ];
 
+//array of villain objects.  Needed for trivia and movie poster.  Don't change strings.
 var villains = [
     {name: "Auric Goldfinger",
     photo: "img/a_Goldfinger.jpg",
@@ -111,6 +113,8 @@ var crimes = [
         movie: "videos/missionFortKnox.mp4"},
     {missio: "Someone has hacked into MI6's database and plans to put all agents in danger by releasing their real identities to the world.",
         movie: "videos/missionMI6.mp4"}];
+
+
 
 function init(){
     createLocationButton(locationObj);
@@ -248,19 +252,8 @@ function chooseMastermind(poster){ //pass in movie poster
     }
 
 }
-
-/*Adds selected locations trivia to the modals*/
-
-// function addTriviaToModal(threeObjArray){
-//
-//     for(var local_i=0; local_i<threeObjArray.length; local_i++){
-//         var IndTrivia= threeObjArray[local_i].trivia;
-//         threeTriviaObj.concat(IndTrivia);
-//     }
-// }
-
-/*Once begin button clicked calls the function to trigger first modal*/
-/*takes in array of trivias and renders a random trivia from array to be posted on the modal */
+/*Once begin button clicked calls the function to trigger first trivia*/
+/*takes in array of trivias and renders a random trivia from array to be posted on dom */
 
 function triggerTrivia(villainTriv){
     if(missionLocations.length>=locationCounter) {
@@ -517,7 +510,7 @@ function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '0',
         width: '0',
-        videoId: vidID, //Find a better way.
+        videoId: vidID, 
         autoplay: '1',
         events: {
             'onReady': onPlayerReady
