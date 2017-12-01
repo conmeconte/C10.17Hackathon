@@ -31,7 +31,6 @@ var moviePoster;
 var mission;
 var missionVideo;
 
-
 var locationObj=[
     {id: 1, name: "London", location: [51.5005803,-0.1258119], youTubeId:'CMXxG9A1nzE',flagSrc: "img/england.png", trivia: [
         "This is the largest city in Europe.",
@@ -134,12 +133,19 @@ function init(){
     loadFinalModalItems();
 };
 
+
 function missionBriefing(arr){
     var random = Math.floor(Math.random()*arr.length);
     mission = crimes[random].mission;
     missionVideo = crimes[random].movie;
-    // $('#initialModal p').text(mission);
-    $('#videoSrc').attr("src", missionVideo);
+    var videoTag = $("<video>").attr({
+        class: "missionVideo",
+        width: "320",
+        height: "236",
+        src: missionVideo
+    })
+    $("#missionVideos").append(videoTag);
+    videoTag[0].play();
 }
 
 function handleClicks(){
@@ -153,6 +159,7 @@ function handleClicks(){
         locationCounter=0;
         wrongChoiceCounter=0;
         win=0;
+        player.pauseVideo();
     });
     $('.villainNames').click(function(){
         chooseMastermind(moviePoster);
@@ -234,7 +241,7 @@ function chooseMastermind(poster){ //pass in movie poster
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();
         $('.villainNames.v2').text(villains[foundVillainIndex].movie);
-        setTimeout(5000, winningModal);
+        setTimeout(winningModal,5000);
     } else {
         win = 1;
         losingModal();
@@ -272,14 +279,22 @@ function triggerTrivia(villainTriv){
 function nextLocation(){
 
     if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
-        $('#midModalImg').attr("src", "img/jamesBond.png");
+        // $('#midModalImg').attr("src", "img/jamesBond.png");
+
+        var videoTag = $("<video>").attr({
+            class: "missionVideo",
+            width: "320",
+            height: "236",
+            src: "video/rightCity.mp4"
+        })
+        $("#missionVideos").append(videoTag);
+        videoTag[0].play();
+
         locationCounter++;
         triggerTrivia();
     }else if(locationCounter>=2){
         winningModal();
-
-    }
-    else{
+    } else{
         $('#midModalP').text("You fell into a trap!");
         $('#midModalP2').text("");
         $('#midModalImg').attr("src", "img/blood-007.png");
@@ -308,14 +323,22 @@ function losingModal(){
     }
 }
 
-
 function winningModal(){
+    if(win===2){
         $('#finalModal').css('display', 'none');
-        $('#initialModal p').text("You Got the Villain");
-        $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
+
+    } else {
+        $('#initialModal h2').text('');
+        $('#initialModal p').text("You Did it 007!").css('font-family', 'Skyfall');
+        $("#initialModal").css("background-image", 'none');
+        $('#initialModalImg').attr("src", "none");
+        document.querySelector("#initialModal").style.backgroundImage = "url('img/final.gif')";
+        // $("#initialModal").css("background-image","url(img/final.gif)");
+        // $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
         $('#initialModal').css('display', 'block');
         $('#missionButton').text('Play Again');
-        $('#finalModal').css('display','block');
+        $('#finalModal').css('display', 'block');
+    }
 }
 
 /*Inputs the locationObj and uses jquery dom creation to create buttons on the document.
@@ -506,7 +529,6 @@ function onYouTubeIframeAPIReady() {
 
 
 //Youtube API will call this function when the video player is ready.
-
 function onPlayerReady(event) {
     event.target.playVideo();
     player.loadVideoById("ye8KvYKn9-0");
