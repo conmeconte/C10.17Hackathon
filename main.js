@@ -148,13 +148,17 @@ function missionBriefing(arr){
         height: "236",
         src: missionVideo
     });
+
     if($('#missionButton').text()==="Begin Mission") {
         $("#missionVideos").append(videoTag);
         videoTag[0].play();
         player.pauseVideo();
+
     }else{
         var replayVid=$(".missionVideo").attr("src",missionVideo);
         replayVid[0].play();
+        player.pauseVideo();
+
     }
 }
 
