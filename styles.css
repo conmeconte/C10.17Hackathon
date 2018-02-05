@@ -54,6 +54,8 @@ html, body {
     width: 39vw;
     position: absolute;
     left: 42%;
+    box-shadow: 0 4px 6px 9px rgba(0, 0, 0, 0.2), 0 6px 10px 4px rgba(0, 0, 0, 0.19);
+    text-align: center;
 }
 #initModP{
     background-color: rgba(255,255,255,0.5);
