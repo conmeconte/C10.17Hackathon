@@ -129,10 +129,7 @@ function init(){
             $('#midModal').css('display','none');
         }
     };
-    // $('.btn').click(function(){
-    //     nextLocation();
-    //     selectMusic();
-    // });
+
     handleClicks();
     loadFinalModalItems();
 };
@@ -147,9 +144,20 @@ function missionBriefing(arr){
         width: "320",
         height: "236",
         src: missionVideo
-    })
-    $("#missionVideos").append(videoTag);
-    videoTag[0].play();
+    });
+
+
+    if($('#missionButton').text()==="Begin Mission") {
+        $("#missionVideos").append(videoTag);
+        videoTag[0].play();
+        player.pauseVideo();
+
+    }else{
+        var replayVid=$(".missionVideo").attr("src",missionVideo);
+        replayVid[0].play();
+        player.pauseVideo();
+
+    }
 }
 
 function handleClicks(){
@@ -163,7 +171,10 @@ function handleClicks(){
         locationCounter=0;
         wrongChoiceCounter=0;
         win=0;
-        player.pauseVideo();
+        if($('missionButton').text()=="Begin Mission"){
+            player.pauseVideo();
+
+        }
     });
     $('.villainNames').click(function(){
         chooseMastermind(moviePoster);
@@ -187,7 +198,6 @@ function indexRandomizer(arr){  //Finds random index in array.
 }
 
 function villainTriviaRandomizer(){
-    // randomizer(villains);
     return selectedVillain.trivia[Math.floor(Math.random() * selectedVillain.trivia.length)];
 }
 function pickMissionLocations(array){  //This function returns three location objects at random for game start.
@@ -231,6 +241,7 @@ function chooseMastermind(poster){ //pass in movie poster
     var choice = $(event.target).text();
     if(choice === selectedVillain.name){
         win = 2;
+        $('#finalModal h1').text('Correct!');
         $('.villainPics.v0').css({
             'background-image': 'url('+villains[foundVillainIndex].photo+')',
             'background-size': 'cover',
@@ -238,13 +249,15 @@ function chooseMastermind(poster){ //pass in movie poster
         });
 
         $('.villainPics.v1').hide();
-        // $('.success').css('display', 'block'); This can be changed to video in later version.
+
         $('.villainPics.v2').css({
             'background-image': 'url('+poster+')'
         });
         $('.villainNames.v0').text(villains[foundVillainIndex].name);
         $('.villainNames.v1').hide();
-        $('.villainNames.v2').text(villains[foundVillainIndex].movie);
+        $('.villainNames.v2').text("You'll find this villain in " +villains[foundVillainIndex].movie).css('text-size','2vh');
+
+        $('#finalModal h1').text("Final Mission Compete!");
         setTimeout(winningModal,5000);
     } else {
         win = 1;
@@ -261,9 +274,10 @@ function triggerTrivia(villainTriv){
         var randomIndex=Math.floor(Math.random() * pickTrivia.length);
         $('#midModalP').text(pickTrivia[randomIndex]);
         $('#midModalP2').text(villainTriv);
-        $('.currentHint p').text(pickTrivia[randomIndex]);
+        $('#hint').text(pickTrivia[randomIndex]);
         $('#villainTr').text(villainTriv);
         $('#midModal').css('display', 'block');
+        $('#wrongTurn').text('');
     }
 }
 
@@ -272,29 +286,24 @@ function triggerTrivia(villainTriv){
 function nextLocation(){
 
     if(locationCounter<2 &&  missionLocations[locationCounter].name.indexOf(event.target.textContent)===0){
-        // $('#midModalImg').attr("src", "img/jamesBond.png");
-        // var rightCityVideo = $(".missionVideo").attr("src", "videos/rightCity.mp4");
-        // rightCityVideo[0].play();
-
+        var rightCityVideo = $(".missionVideo").attr("src", "videos/rightCity.mp4");
+        rightCityVideo[0].play();
         locationCounter++;
-        triggerTrivia();
+        triggerTrivia(villainTriviaRandomizer());
+
     }else if(locationCounter>=2){
         winningModal();
     } else{
-        // $('#midModalP').text("You fell into a trap!");
-        // $('#midModalP2').text("");
-        // $('#midModalImg').attr("src", "img/blood-007.png");
-        // $('#midModal').css('display', 'block');
-
-        // var wrongCityVideo = $(".missionVideo").attr("src", "videos/wrongCity.mp4");
-        // wrongCityVideo[0].play();
-
+        $('#wrongTurn').text("You fell into a trap!");
+        var wrongCityVideo = $(".missionVideo").attr("src", "videos/wrongCity.mp4");
+        wrongCityVideo[0].play();
         wrongChoiceCounter++;
         losingModal();
         gunSound.play();
     }
 
 }
+
 
 /*If player clicks wrong choice more than 5 times this function trigger*/
 
@@ -321,7 +330,8 @@ function winningModal(){
         $('#initialModal h2').text('');
         $('#initialModal p').text("You Did it 007!").css('font-family', 'Skyfall');
         $("#initialModal").css("background-image", 'none');
-        $('#initialModalImg').attr("src", "none");
+        $('#initialModalImg').css("display", "none");
+        $('#connery').attr('src','none');
         document.querySelector("#initialModal").style.backgroundImage = "url('img/final.gif')";
         // $("#initialModal").css("background-image","url(img/final.gif)");
         // $('#initialModalImg').attr("src", "img/Bond-appeal_wide.gif").height("15vh").width("20vw");
